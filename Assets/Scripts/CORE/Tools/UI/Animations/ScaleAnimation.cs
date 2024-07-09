@@ -25,7 +25,7 @@ public class ScaleAnimation : ScaleAnimationBase
 
     protected virtual void UnScale()
     {
-        transform.DOScale(originalScale / _scaleFactor, _duration)
+        transform.DOScale(originalScale, _duration)
                 .SetEase(Ease.InOutSine);
     }
 }
