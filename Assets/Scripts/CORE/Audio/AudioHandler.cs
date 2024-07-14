@@ -120,6 +120,9 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
                 _ambientAudioSource.volume = volume;
                 break;
         }
+
+        SaveByType(DISystem.Instance.DataPersistenceHandlerBase.GameData,type, volume);
+
     }
 
     private SoundConfig[] GetSoundsArrayByType(SoundType type)
@@ -176,6 +179,24 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
                 soundData = new SoundData(GetVolumeByType(type));
                 data.SoundsData.SoundVolumeData.Add(id, soundData);
             }
+        }
+    }
+
+    public void SaveByType(GameData data, SoundType type, float volume)
+    {
+        if (data != null)
+        {
+            SoundData soundData;
+
+            string id = type.ToString();
+
+            if (data.SoundsData.SoundVolumeData.ContainsKey(id) == true)
+            {
+                data.SoundsData.SoundVolumeData.Remove(id);
+            }
+
+            soundData = new SoundData(volume);
+            data.SoundsData.SoundVolumeData.Add(id, soundData);
         }
     }
     public void LoadData(GameData data)

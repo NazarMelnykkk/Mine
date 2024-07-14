@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataPersistenceHandlerBase : MonoBehaviour
 {
-    protected GameData _gameData;
+    public GameData GameData;
     protected FileDataHandler _fileDataHandler;
     protected string CurrentProfileID = "Plague.json";
 
@@ -16,18 +16,21 @@ public class DataPersistenceHandlerBase : MonoBehaviour
     protected virtual void Start()
     {
         LoadGame();
+
+        DISystem.Instance.SceneLoader.OnSceneLoadedEvent += LoadGame;
+        DISystem.Instance.SceneLoader.OnSceneUnloadEvent += SaveGame;
     }
 
     protected virtual void NewGame()
     {
-        _gameData = new GameData();
+        GameData = new GameData();
     }
 
     public virtual void LoadGame()
     {
-        _gameData = _fileDataHandler.Load(CurrentProfileID);
+        GameData = _fileDataHandler.Load(CurrentProfileID);
 
-        if (_gameData == null)
+        if (GameData == null)
         {
             Debug.Log("No data was found. A New Game needs to be started before data can be loaded. profile id");
             NewGame();
@@ -36,13 +39,13 @@ public class DataPersistenceHandlerBase : MonoBehaviour
 
         foreach (IDataPersistence dataPersistenceObject in FindAllDataPersistenceObjects())
         {
-            dataPersistenceObject.LoadData(_gameData);
+            dataPersistenceObject.LoadData(GameData);
         }
     }
 
     public virtual void SaveGame()
     {
-        if (_gameData == null)
+        if (GameData == null)
         {
             Debug.Log("No data was found. A New Game needs to be started before data can be saved");
             return;
@@ -50,10 +53,10 @@ public class DataPersistenceHandlerBase : MonoBehaviour
 
         foreach (IDataPersistence dataPersistenceObject in FindAllDataPersistenceObjects())
         {
-            dataPersistenceObject.SaveData(_gameData);
+            dataPersistenceObject.SaveData(GameData);
         }
 
-        _fileDataHandler.Save(_gameData, CurrentProfileID);
+        _fileDataHandler.Save(GameData, CurrentProfileID);
 
     }
 
@@ -71,7 +74,7 @@ public class DataPersistenceHandlerBase : MonoBehaviour
 
     protected virtual bool HasGameData()
     {
-        return _gameData != null;
+        return GameData != null;
     }
 
 

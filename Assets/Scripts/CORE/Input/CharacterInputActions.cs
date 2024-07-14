@@ -37,18 +37,63 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Fire1"",
                     ""type"": ""Button"",
-                    ""id"": ""69be1802-e918-4345-98e1-741a1fbb0ebb"",
+                    ""id"": ""d3bc4ba5-b24f-4dc6-8705-ca42dbd9f43d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Accept"",
+                    ""name"": ""Fire2"",
                     ""type"": ""Button"",
-                    ""id"": ""b4b02655-ec80-4f0d-8465-9890ecee86db"",
+                    ""id"": ""53096ba9-9b94-43f1-9361-c1a19ab07cf1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""54a2939a-286f-49d6-9deb-9f4037cac229"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""09fe3898-08d3-4c67-9934-35735c769e87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CommandsTab"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bf8792d-0ffc-4c92-80bf-f6ee3b1b5b5e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c713fea-3381-43fb-be8f-5e17942a020b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""36e4dcc9-c19e-497c-b9d4-698f7834057d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -157,23 +202,78 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
                 },
                 {
                     ""name"": """",
-                    ""id"": ""56a82de7-dfac-4a03-8bcf-263c1f5fc1fe"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""1901fddb-4348-4709-8c4b-6333d87af4d7"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eee96817-2283-42a5-832f-c51cfd9ec056"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""403367da-1cf8-4b90-9393-e06d359fd4f1"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Accept"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dec62c6-9302-4d3c-b9e3-da0ce42e1a8f"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CommandsTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d597c71-b39e-47bc-be99-304ce66657f9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba936b69-0e20-468d-a59c-e6de4218846d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5add78ec-9565-41f6-9c2c-4cd5f797b9db"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7dd954cf-20bf-48d7-aa15-cad9255a73e1"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -185,8 +285,13 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         // Character
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_MoveDirection = m_Character.FindAction("MoveDirection", throwIfNotFound: true);
-        m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
-        m_Character_Accept = m_Character.FindAction("Accept", throwIfNotFound: true);
+        m_Character_Fire1 = m_Character.FindAction("Fire1", throwIfNotFound: true);
+        m_Character_Fire2 = m_Character.FindAction("Fire2", throwIfNotFound: true);
+        m_Character_Interaction = m_Character.FindAction("Interaction", throwIfNotFound: true);
+        m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
+        m_Character_CommandsTab = m_Character.FindAction("CommandsTab", throwIfNotFound: true);
+        m_Character_Menu = m_Character.FindAction("Menu", throwIfNotFound: true);
+        m_Character_AnyKey = m_Character.FindAction("AnyKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,15 +354,25 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
     private readonly InputActionMap m_Character;
     private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
     private readonly InputAction m_Character_MoveDirection;
-    private readonly InputAction m_Character_Jump;
-    private readonly InputAction m_Character_Accept;
+    private readonly InputAction m_Character_Fire1;
+    private readonly InputAction m_Character_Fire2;
+    private readonly InputAction m_Character_Interaction;
+    private readonly InputAction m_Character_Inventory;
+    private readonly InputAction m_Character_CommandsTab;
+    private readonly InputAction m_Character_Menu;
+    private readonly InputAction m_Character_AnyKey;
     public struct CharacterActions
     {
         private @CharacterInputActions m_Wrapper;
         public CharacterActions(@CharacterInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveDirection => m_Wrapper.m_Character_MoveDirection;
-        public InputAction @Jump => m_Wrapper.m_Character_Jump;
-        public InputAction @Accept => m_Wrapper.m_Character_Accept;
+        public InputAction @Fire1 => m_Wrapper.m_Character_Fire1;
+        public InputAction @Fire2 => m_Wrapper.m_Character_Fire2;
+        public InputAction @Interaction => m_Wrapper.m_Character_Interaction;
+        public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
+        public InputAction @CommandsTab => m_Wrapper.m_Character_CommandsTab;
+        public InputAction @Menu => m_Wrapper.m_Character_Menu;
+        public InputAction @AnyKey => m_Wrapper.m_Character_AnyKey;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -270,12 +385,27 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
             @MoveDirection.started += instance.OnMoveDirection;
             @MoveDirection.performed += instance.OnMoveDirection;
             @MoveDirection.canceled += instance.OnMoveDirection;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @Accept.started += instance.OnAccept;
-            @Accept.performed += instance.OnAccept;
-            @Accept.canceled += instance.OnAccept;
+            @Fire1.started += instance.OnFire1;
+            @Fire1.performed += instance.OnFire1;
+            @Fire1.canceled += instance.OnFire1;
+            @Fire2.started += instance.OnFire2;
+            @Fire2.performed += instance.OnFire2;
+            @Fire2.canceled += instance.OnFire2;
+            @Interaction.started += instance.OnInteraction;
+            @Interaction.performed += instance.OnInteraction;
+            @Interaction.canceled += instance.OnInteraction;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
+            @CommandsTab.started += instance.OnCommandsTab;
+            @CommandsTab.performed += instance.OnCommandsTab;
+            @CommandsTab.canceled += instance.OnCommandsTab;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
+            @AnyKey.started += instance.OnAnyKey;
+            @AnyKey.performed += instance.OnAnyKey;
+            @AnyKey.canceled += instance.OnAnyKey;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -283,12 +413,27 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
             @MoveDirection.started -= instance.OnMoveDirection;
             @MoveDirection.performed -= instance.OnMoveDirection;
             @MoveDirection.canceled -= instance.OnMoveDirection;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Accept.started -= instance.OnAccept;
-            @Accept.performed -= instance.OnAccept;
-            @Accept.canceled -= instance.OnAccept;
+            @Fire1.started -= instance.OnFire1;
+            @Fire1.performed -= instance.OnFire1;
+            @Fire1.canceled -= instance.OnFire1;
+            @Fire2.started -= instance.OnFire2;
+            @Fire2.performed -= instance.OnFire2;
+            @Fire2.canceled -= instance.OnFire2;
+            @Interaction.started -= instance.OnInteraction;
+            @Interaction.performed -= instance.OnInteraction;
+            @Interaction.canceled -= instance.OnInteraction;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
+            @CommandsTab.started -= instance.OnCommandsTab;
+            @CommandsTab.performed -= instance.OnCommandsTab;
+            @CommandsTab.canceled -= instance.OnCommandsTab;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
+            @AnyKey.started -= instance.OnAnyKey;
+            @AnyKey.performed -= instance.OnAnyKey;
+            @AnyKey.canceled -= instance.OnAnyKey;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -309,7 +454,12 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
     public interface ICharacterActions
     {
         void OnMoveDirection(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnAccept(InputAction.CallbackContext context);
+        void OnFire1(InputAction.CallbackContext context);
+        void OnFire2(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
+        void OnCommandsTab(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
+        void OnAnyKey(InputAction.CallbackContext context);
     }
 }

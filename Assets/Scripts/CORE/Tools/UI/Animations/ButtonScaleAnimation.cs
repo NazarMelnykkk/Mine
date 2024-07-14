@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
+using DG.Tweening;
+
+/// <summary>
+/// USE WITH CUSTOM BUTTON SCRIPT
+/// </summary>
 public class ButtonScaleAnimation : ScaleAnimation
 {
     protected ButtonCustomBase _customBase;
@@ -21,5 +23,10 @@ public class ButtonScaleAnimation : ScaleAnimation
     {
         _customBase.OnButtonSelectEvent -= Scale;
         _customBase.OnButtonDeselectEvent -= UnScale;
+
+        if (transform != null)
+        {
+            transform.DOKill();
+        }
     }
 }

@@ -1,39 +1,131 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum AlertType
+{
+    Letter = 0,
+    Popup = 1,
+}
+
 public class AlertsHandler : MonoBehaviour
 {
-    [SerializeField] private AlertPopup alertPopup;
-    [SerializeField] private List<AlertBase> _alerts = new List<AlertBase>();
-    public bool IsAnyAlertOn()
+
+    [Header("Letter")]
+    [SerializeField] private List<AlertLetter> _alertsLetters = new List<AlertLetter>();
+    [SerializeField] private AlertLetter _alertLetterPrefab;
+    [SerializeField] private GameObject _letterHolder;
+    private int _letterIndex = 0;
+
+    [Header("Popup")]
+    [SerializeField] private List<AlertPopup> _alertsPopup = new List<AlertPopup>();
+    [SerializeField] private AlertPopup _alertPopupPrefab;
+    [SerializeField] private GameObject _popupHolder;
+    private int _popupIndex = 0;
+
+    private void Start()
     {
-        return transform.childCount > 0;
+        AlertLetter("iasdasd asdasd as" +
+            " asdas d" +
+            " asd" +
+            "asd " +
+            "as" +
+            "d as" +
+            "d ", KeysColor.RED, 1);
     }
+
+    /*private void Awake()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            AlertPopup("i " + i, KeysColor.ORANGE, i, 1);
+            AlertLetter("i " + i, KeysColor.RED, 1);
+        }      
+    }*/
+
+    public void AlertLetter(string text, string color = KeysColor.DEFAULT, float delay = 1)
+    {
+        if (_letterIndex >= _alertsLetters.Count) 
+        {
+            _letterIndex = 0;
+        }
+
+        if (_alertsLetters[_letterIndex].gameObject.activeSelf == true)
+        {
+            AlertLetter newItem = CreateNewLetter();
+            _alertsLetters.Add(newItem);
+
+            _letterIndex = _alertsLetters.Count - 1;
+        }
+
+        _alertsLetters[_letterIndex].transform.SetAsLastSibling();
+
+        _alertsLetters[_letterIndex].Setup(text, color, delay);
+
+        _letterIndex++;
+    }
+
+    public void AlertPopup(string text, string color = KeysColor.DEFAULT, float lifeTime = 1, float delay = 1)
+    {
+        if (_popupIndex >= _alertsPopup.Count)
+        {
+            _popupIndex = 0;
+        }
+
+        if (_alertsPopup[_popupIndex].gameObject.activeSelf == true)
+        {
+            AlertPopup newItem = CreateNewPopup();
+            _alertsPopup.Add(newItem);
+
+            _popupIndex = _alertsPopup.Count - 1;
+        }
+
+        _alertsPopup[_popupIndex].transform.SetAsFirstSibling();
+
+        _alertsPopup[_popupIndex].Setup(text, color, lifeTime, delay);
+
+        _popupIndex++;
+    }
+
 
     public void DisableAlerts()
     {
-        foreach (Transform child in transform)
+        foreach (AlertLetter alert in _alertsLetters)
         {
-            Destroy(child.gameObject);
+            alert.gameObject.SetActive(false);
         }
+
+        foreach (AlertPopup alert in _alertsPopup)
+        {
+            alert.gameObject.SetActive(false);
+        }
+
+        ResetSettings();
     }
 
-    public void DisplayAlert(string alertMsg, float speed = 1, int sortOrder = 3, float delay = 0)
+    private AlertLetter CreateNewLetter()
     {
-        DisableAlerts();
+        AlertLetter newItem = Instantiate(_alertLetterPrefab);
+        newItem.gameObject.SetActive(false);
+        newItem.transform.SetParent(_letterHolder.transform, false);
 
-        StopAllCoroutines();
-        StartCoroutine(CreateAlertCoroutine(alertMsg, speed, sortOrder, delay));
+        return newItem;
     }
 
-    private IEnumerator CreateAlertCoroutine(string alertMsg, float speed = 1, int sortOrder = 3, float delay = 0)
+    private AlertPopup CreateNewPopup()
     {
-        if (delay > 0)
-            yield return new WaitForSeconds(delay);
+        AlertPopup newItem = Instantiate(_alertPopupPrefab);
+        newItem.gameObject.SetActive(false);
+        newItem.transform.SetParent(_popupHolder.transform, false);
 
-        AlertPopup newAlert = Instantiate(alertPopup, transform);
-        newAlert.gameObject.SetActive(true);
-        newAlert.SetText(alertMsg);
+        return newItem;
     }
+
+
+    private void ResetSettings()
+    {
+        _letterIndex = 0;
+        _popupIndex = 0;
+    }
+
 }

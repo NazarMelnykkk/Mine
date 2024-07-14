@@ -13,9 +13,9 @@ public class ObjectPersistenceHandler : DataPersistenceHandlerBase
 
     public override void LoadGame()
     {
-        _gameData = _fileDataHandler.Load(CurrentProfileID);
+        GameData = _fileDataHandler.Load(CurrentProfileID);
 
-        if (_gameData == null)
+        if (GameData == null)
         {
             Debug.Log("No data was found. A New Game needs to be started before data can be loaded. profile id");
             NewGame();
@@ -24,13 +24,13 @@ public class ObjectPersistenceHandler : DataPersistenceHandlerBase
 
         foreach (IDataPersistence dataPersistenceObject in FindAllDataPersistenceObjects())
         {
-            dataPersistenceObject.LoadData(_gameData);
+            dataPersistenceObject.LoadData(GameData);
         }
     }
 
     public override void SaveGame()
     {
-        if (_gameData == null)
+        if (GameData == null)
         {
             Debug.Log("No data was found. A New Game needs to be started before data can be saved");
             return;
@@ -38,10 +38,10 @@ public class ObjectPersistenceHandler : DataPersistenceHandlerBase
 
         foreach (IDataPersistence dataPersistenceObject in FindAllDataPersistenceObjects())
         {
-            dataPersistenceObject.SaveData(_gameData);
+            dataPersistenceObject.SaveData(GameData);
         }
 
-        _fileDataHandler.Save(_gameData, CurrentProfileID);
+        _fileDataHandler.Save(GameData, CurrentProfileID);
 
     }
 

@@ -1,34 +1,24 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance;
-
     [Header("Scene")]
     [SerializeField] private SceneField _systemScene;
     [SerializeField] private SceneField _menuScene;
+
 
     [Header("Actions")]
     public Action OnSceneLoadEvent;
     public Action OnSceneLoadedEvent;
 
+    public Action OnSceneUnloadEvent;
+
     public Action OnRestartGameEvent;
 
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public List<SceneField> ActiveScene; 
 
     private void Start()
     {
@@ -37,21 +27,46 @@ public class SceneLoader : MonoBehaviour
 
     public void Add(SceneField sceneToLoad)
     {
+        StartLoadEvent();
         SceneManager.LoadScene(sceneToLoad.SceneName, LoadSceneMode.Additive);
+        ActiveScene.Add(sceneToLoad);
+        EndLoadEvent();
     }
 
     public void Transition(SceneField sceneToLoad, string sceneToUnload)
     {
-
+        StartUnloadEvent();
         SceneManager.UnloadSceneAsync(sceneToUnload);
+        ActiveScene.Remove(GetSceneFieldByString(sceneToUnload));
+
+        StartLoadEvent();
         SceneManager.LoadScene(sceneToLoad.SceneName, LoadSceneMode.Additive);
+        ActiveScene.Add(sceneToLoad);
+        EndLoadEvent();
     }
 
     public void RestartGameScene(string sceneToRestart)
     {
         RestartEvent();
+        StartUnloadEvent();
         SceneManager.UnloadSceneAsync(sceneToRestart);
+
+        StartLoadEvent();
         SceneManager.LoadScene(sceneToRestart, LoadSceneMode.Additive);
+        EndLoadEvent();
+    }
+
+    private SceneField GetSceneFieldByString(string sceneName)
+    {
+        foreach (var scene in ActiveScene)
+        {
+            if(scene.SceneName == sceneName)
+            {
+                return scene;
+            }
+        }
+
+        return null;
     }
 
     private void StartLoadEvent()
@@ -62,6 +77,11 @@ public class SceneLoader : MonoBehaviour
     private void EndLoadEvent()
     {
         OnSceneLoadedEvent?.Invoke();
+    }
+
+    private void StartUnloadEvent()
+    {
+        OnSceneUnloadEvent?.Invoke();
     }
 
     private void RestartEvent()

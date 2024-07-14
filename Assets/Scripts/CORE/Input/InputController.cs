@@ -14,37 +14,46 @@ public class InputController : MonoBehaviour
 
     private void OnEnable()
     {
-        InputActions.Character.Jump.performed += JumpPerformed;
+        InputActions.Character.MoveDirection.performed += MovePerformed;
+        InputActions.Character.MoveDirection.canceled += MoveCanceled;
 
-        InputActions.Character.Accept.performed += AcceptPerformed;
+        InputActions.Character.Interaction.performed += InteractionPerformed;
 
     }
 
     private void OnDisable()
     {
-        InputActions.Character.Jump.performed -= JumpPerformed;
+        InputActions.Character.MoveDirection.performed -= MovePerformed;
+        InputActions.Character.MoveDirection.canceled -= MoveCanceled;
 
-        InputActions.Character.Accept.performed -= AcceptPerformed;
-
+        InputActions.Character.Interaction.performed -= InteractionPerformed;
     }
 
-    #region Jump
-    public Action OnJumpPerformedEvent;
+    #region Move
 
-    private void JumpPerformed(InputAction.CallbackContext context)
+    public Action<Vector2> OnMovePerformedEvent;
+    private void MovePerformed(InputAction.CallbackContext context)
     {
-        OnJumpPerformedEvent?.Invoke();
+        Vector2 direction = context.ReadValue<Vector2>();
+        OnMovePerformedEvent?.Invoke(direction);
+    }
+
+    public Action<Vector2> OnMoveCanceledEvent;
+    private void MoveCanceled(InputAction.CallbackContext context)
+    {
+        Vector2 direction = context.ReadValue<Vector2>();
+        OnMoveCanceledEvent?.Invoke(direction);
     }
 
     #endregion
 
-    #region Accept
+    #region Interaction
 
-    public Action OnAcceptPerformedEvent;
+    public Action OnInteractionPerformedEvent;
 
-    private void AcceptPerformed(InputAction.CallbackContext context)
+    private void InteractionPerformed(InputAction.CallbackContext context)
     {
-        OnAcceptPerformedEvent?.Invoke();
+        OnInteractionPerformedEvent?.Invoke();
     }
     #endregion
 

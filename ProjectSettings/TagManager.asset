@@ -16,10 +16,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Interact/Interactable
+  - Character/Player
+  - Character/NPC
+  - Character/Enemy
   - 
   - 
   - 

@@ -1,5 +1,6 @@
 using DG.Tweening;
 
+
 public class ScaleAnimation : ScaleAnimationBase
 {
 
@@ -19,13 +20,21 @@ public class ScaleAnimation : ScaleAnimationBase
 
     protected virtual void Scale()
     {
-        transform.DOScale(originalScale * _scaleFactor, _duration)
-               .SetEase(Ease.InOutSine);
+        if (transform != null)
+        {
+            transform.DOScale(originalScale * _scaleFactor, _duration)
+           .SetEase(Ease.InOutSine);
+
+        }
     }
 
     protected virtual void UnScale()
     {
-        transform.DOScale(originalScale, _duration)
-                .SetEase(Ease.InOutSine);
+        if (transform != null)
+        {
+            transform.DOScale(originalScale, _duration)
+               .SetEase(Ease.InOutSine);
+        }
     }
+
 }
