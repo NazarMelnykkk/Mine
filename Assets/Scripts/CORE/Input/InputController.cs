@@ -17,6 +17,8 @@ public class InputController : MonoBehaviour
         InputActions.Character.MoveDirection.performed += MovePerformed;
         InputActions.Character.MoveDirection.canceled += MoveCanceled;
 
+        InputActions.Character.Scroll.performed += OnScrollPerformed;
+
         InputActions.Character.Interaction.performed += InteractionPerformed;
 
     }
@@ -25,6 +27,8 @@ public class InputController : MonoBehaviour
     {
         InputActions.Character.MoveDirection.performed -= MovePerformed;
         InputActions.Character.MoveDirection.canceled -= MoveCanceled;
+
+        InputActions.Character.Scroll.performed -= OnScrollPerformed;
 
         InputActions.Character.Interaction.performed -= InteractionPerformed;
     }
@@ -55,6 +59,18 @@ public class InputController : MonoBehaviour
     {
         OnInteractionPerformedEvent?.Invoke();
     }
+    #endregion
+
+    #region Scroll
+
+    public event Action<float> OnScrollPerformedIvent;
+    private void OnScrollPerformed(InputAction.CallbackContext context)
+    {
+        float scrollDelta = context.ReadValue<Vector2>().y;
+
+        OnScrollPerformedIvent?.Invoke(scrollDelta);
+    }
+
     #endregion
 
     #region Jump

@@ -14,6 +14,7 @@ public class CharacterLocomotion : ICommandHandler
     private Transform _transform;
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
+    private CharacterAnimationController _characterAnimationController;
 
     public void Setup(LocomotionConfig config , GameObject obj)
     {
@@ -27,6 +28,7 @@ public class CharacterLocomotion : ICommandHandler
         _transform = _gameObject.transform;
         _rb = _gameObject.GetComponent<Rigidbody2D>();
         _spriteRenderer = _gameObject.GetComponentInChildren<SpriteRenderer>();
+        _characterAnimationController = _gameObject.GetComponent<CharacterAnimationController>();
     }
 
     public void ProcessCommand(CharacterCommand command)
@@ -40,15 +42,6 @@ public class CharacterLocomotion : ICommandHandler
         _horizontalDirection = _command.Direction.x;
         _verticalDirection = _command.Direction.y;
 
-        if (_command.Direction.x > 0)
-        {
-            _spriteRenderer.flipX = false;
-        }
-        else if(_command.Direction.x < 0)
-        {
-            _spriteRenderer.flipX = true;
-        }
-
         _direction = _transform.up * _verticalDirection + _transform.right * _horizontalDirection;
 
         _rb.MovePosition(_rb.position + _direction.normalized * _config.Speed * Time.fixedDeltaTime);
@@ -56,8 +49,10 @@ public class CharacterLocomotion : ICommandHandler
         if (_command.Direction == Vector2.zero)
         {
             _command.IsComplete = true;
+            _characterAnimationController.Idle();
             return;
         }
 
+        _characterAnimationController.Move(_direction);
     }
 }

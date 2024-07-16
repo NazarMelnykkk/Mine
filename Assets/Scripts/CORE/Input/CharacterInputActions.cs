@@ -55,6 +55,15 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""bfbaae67-e552-4e59-946a-1b1ce5d172d8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""54a2939a-286f-49d6-9deb-9f4037cac229"",
@@ -276,6 +285,17 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
                     ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d9c1b5a-faf6-461d-b648-cb025dc07e77"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -287,6 +307,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         m_Character_MoveDirection = m_Character.FindAction("MoveDirection", throwIfNotFound: true);
         m_Character_Fire1 = m_Character.FindAction("Fire1", throwIfNotFound: true);
         m_Character_Fire2 = m_Character.FindAction("Fire2", throwIfNotFound: true);
+        m_Character_Scroll = m_Character.FindAction("Scroll", throwIfNotFound: true);
         m_Character_Interaction = m_Character.FindAction("Interaction", throwIfNotFound: true);
         m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
         m_Character_CommandsTab = m_Character.FindAction("CommandsTab", throwIfNotFound: true);
@@ -356,6 +377,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
     private readonly InputAction m_Character_MoveDirection;
     private readonly InputAction m_Character_Fire1;
     private readonly InputAction m_Character_Fire2;
+    private readonly InputAction m_Character_Scroll;
     private readonly InputAction m_Character_Interaction;
     private readonly InputAction m_Character_Inventory;
     private readonly InputAction m_Character_CommandsTab;
@@ -368,6 +390,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         public InputAction @MoveDirection => m_Wrapper.m_Character_MoveDirection;
         public InputAction @Fire1 => m_Wrapper.m_Character_Fire1;
         public InputAction @Fire2 => m_Wrapper.m_Character_Fire2;
+        public InputAction @Scroll => m_Wrapper.m_Character_Scroll;
         public InputAction @Interaction => m_Wrapper.m_Character_Interaction;
         public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
         public InputAction @CommandsTab => m_Wrapper.m_Character_CommandsTab;
@@ -391,6 +414,9 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
             @Fire2.started += instance.OnFire2;
             @Fire2.performed += instance.OnFire2;
             @Fire2.canceled += instance.OnFire2;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
             @Interaction.started += instance.OnInteraction;
             @Interaction.performed += instance.OnInteraction;
             @Interaction.canceled += instance.OnInteraction;
@@ -419,6 +445,9 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
             @Fire2.started -= instance.OnFire2;
             @Fire2.performed -= instance.OnFire2;
             @Fire2.canceled -= instance.OnFire2;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
             @Interaction.started -= instance.OnInteraction;
             @Interaction.performed -= instance.OnInteraction;
             @Interaction.canceled -= instance.OnInteraction;
@@ -456,6 +485,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         void OnMoveDirection(InputAction.CallbackContext context);
         void OnFire1(InputAction.CallbackContext context);
         void OnFire2(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnCommandsTab(InputAction.CallbackContext context);

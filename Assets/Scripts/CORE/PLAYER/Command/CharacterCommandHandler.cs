@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CharacterCommandHandler : MonoBehaviour
 {
+
     public CharacterCommand CurrentCommand;
 
     [Header("Locomotion")]

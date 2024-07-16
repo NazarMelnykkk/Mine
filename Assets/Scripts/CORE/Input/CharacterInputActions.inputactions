@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "bfbaae67-e552-4e59-946a-1b1ce5d172d8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Interaction",
                     "type": "Button",
                     "id": "54a2939a-286f-49d6-9deb-9f4037cac229",
@@ -252,6 +261,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "AnyKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d9c1b5a-faf6-461d-b648-cb025dc07e77",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

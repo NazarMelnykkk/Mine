@@ -11,6 +11,8 @@ public class DISystem : MonoBehaviour
     public SceneLoader SceneLoader;
     public AlertsHandler AlertsHandler;
     public TooltipHandler TooltipHandler;
+    public CameraFollow CameraFollow;
+    public CameraSnaking CameraSnaking;
 
 
     private void Awake()
