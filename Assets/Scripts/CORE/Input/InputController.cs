@@ -17,6 +17,9 @@ public class InputController : MonoBehaviour
         InputActions.Character.MoveDirection.performed += MovePerformed;
         InputActions.Character.MoveDirection.canceled += MoveCanceled;
 
+        InputActions.Character.Fire1.performed += Fire1Performed;
+        InputActions.Character.Fire1.canceled += Fire1Canceled;
+
         InputActions.Character.Scroll.performed += OnScrollPerformed;
 
         InputActions.Character.Interaction.performed += InteractionPerformed;
@@ -27,6 +30,9 @@ public class InputController : MonoBehaviour
     {
         InputActions.Character.MoveDirection.performed -= MovePerformed;
         InputActions.Character.MoveDirection.canceled -= MoveCanceled;
+
+        InputActions.Character.Fire1.performed -= Fire1Performed;
+        InputActions.Character.Fire1.canceled -= Fire1Canceled;
 
         InputActions.Character.Scroll.performed -= OnScrollPerformed;
 
@@ -49,6 +55,22 @@ public class InputController : MonoBehaviour
         OnMoveCanceledEvent?.Invoke(direction);
     }
 
+    #endregion
+
+    #region Attack
+    public Action OnFire1PerformedEvent;
+
+    private void Fire1Performed(InputAction.CallbackContext context)
+    {
+        OnFire1PerformedEvent?.Invoke();
+    }
+
+    public Action OnFire1CanceledEvent;
+
+    private void Fire1Canceled(InputAction.CallbackContext context)
+    {
+        OnFire1CanceledEvent?.Invoke();
+    }
     #endregion
 
     #region Interaction

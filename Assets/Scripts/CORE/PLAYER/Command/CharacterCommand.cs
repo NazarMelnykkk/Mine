@@ -6,6 +6,7 @@ public class CharacterCommand
 
     public Vector2 Direction;
     public GameObject Target;
+    public bool Value;
 
     public bool IsComplete;
 
@@ -24,5 +25,11 @@ public class CharacterCommand
     public CharacterCommand(CommandType commandType)
     {
         CommandType = commandType;
+    }
+
+    public CharacterCommand(CommandType commandType, bool value)
+    {
+        CommandType = commandType;
+        Value = value;
     }
 }

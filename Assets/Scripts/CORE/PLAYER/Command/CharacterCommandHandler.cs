@@ -5,23 +5,35 @@ public class CharacterCommandHandler : MonoBehaviour
 
     public CharacterCommand CurrentCommand;
 
+    private CharacterInputController _inputController;
+
     [Header("Locomotion")]
-    private CharacterLocomotion _characterMoveHandler;
-    private CharacterLocomotionInputController _inputController;
+    private CharacterLocomotionController _characterMoveHandler;
     [SerializeField] private LocomotionConfig _locomotionConfig;
+
+    [Header("Attack")]
+    private CharacterAttackController _characterAttackController;
+    [SerializeField] private AttackConfig _attackConfig;
 
     private void Start()
     {
-        InitLoconotion();   
+        InitLocomotion();
+        InitAttack();
+
+        _inputController = new CharacterInputController();
+        _inputController.Setup(this);
     }
 
-    private void InitLoconotion()
+    private void InitLocomotion()
     {
-        _characterMoveHandler = new CharacterLocomotion();
+        _characterMoveHandler = new CharacterLocomotionController();
         _characterMoveHandler.Setup(_locomotionConfig, gameObject);
+    }
 
-        _inputController = new CharacterLocomotionInputController();
-        _inputController.Setup(this);
+    private void InitAttack()
+    {
+        _characterAttackController = new CharacterAttackController();
+        _characterAttackController.Setup(_attackConfig, gameObject);
     }
 
     /// <summary>
@@ -51,7 +63,10 @@ public class CharacterCommandHandler : MonoBehaviour
                 break;
             case CommandType.Move:
                 ProcessMoveCommand();
-                break;            
+                break;
+            case CommandType.Attack:
+                ProcessAttackCommand();
+                break;
             default:
                 break;
         }
@@ -74,7 +89,7 @@ public class CharacterCommandHandler : MonoBehaviour
 
     private void ProcessAttackCommand()
     {
-        //moveCommandHandler.ProcessCommand(CurrentCommand);
+        _characterAttackController.ProcessCommand(CurrentCommand);
     }
 
     private void ProcessInteractCommand()

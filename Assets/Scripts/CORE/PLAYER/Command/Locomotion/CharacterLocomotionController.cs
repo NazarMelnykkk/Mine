@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterLocomotion : ICommandHandler
+public class CharacterLocomotionController : ICommandHandler
 {
     private CharacterCommand _command;
     private LocomotionConfig _config;
@@ -13,7 +13,6 @@ public class CharacterLocomotion : ICommandHandler
     private GameObject _gameObject;
     private Transform _transform;
     private Rigidbody2D _rb;
-    private SpriteRenderer _spriteRenderer;
     private CharacterAnimationController _characterAnimationController;
 
     public void Setup(LocomotionConfig config , GameObject obj)
@@ -27,7 +26,6 @@ public class CharacterLocomotion : ICommandHandler
     {
         _transform = _gameObject.transform;
         _rb = _gameObject.GetComponent<Rigidbody2D>();
-        _spriteRenderer = _gameObject.GetComponentInChildren<SpriteRenderer>();
         _characterAnimationController = _gameObject.GetComponent<CharacterAnimationController>();
     }
 
