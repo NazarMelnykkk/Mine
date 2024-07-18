@@ -13,12 +13,14 @@ public class CharacterLocomotionController : ICommandHandler
     private GameObject _gameObject;
     private Transform _transform;
     private Rigidbody2D _rb;
+    private TriggerCollider _triggerCollider;
     private CharacterAnimationController _characterAnimationController;
 
-    public void Setup(LocomotionConfig config , GameObject obj)
+    public void Setup(LocomotionConfig config , GameObject obj, TriggerCollider attackTrigger)
     {
         _config = config;
         _gameObject = obj;
+        _triggerCollider = attackTrigger;
         Init();
     }
 
@@ -44,12 +46,16 @@ public class CharacterLocomotionController : ICommandHandler
 
         _rb.MovePosition(_rb.position + _direction.normalized * _config.Speed * Time.fixedDeltaTime);
 
+
         if (_command.Direction == Vector2.zero)
         {
             _command.IsComplete = true;
             _characterAnimationController.Idle();
             return;
         }
+
+        float angle = Mathf.Atan2(_verticalDirection, _horizontalDirection) * Mathf.Rad2Deg;
+        _triggerCollider.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         _characterAnimationController.Move(_direction);
     }

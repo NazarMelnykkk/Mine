@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterAttackController
@@ -9,14 +10,16 @@ public class CharacterAttackController
     [Header("Components")]
     private GameObject _gameObject;
     private CharacterAnimationController _characterAnimationController;
+    private TriggerCollider _triggerCollider;
 
     private bool _isAttacking = false;
     private Task _attackTask;
 
-    public void Setup(AttackConfig config, GameObject obj)
+    public void Setup(AttackConfig config, GameObject obj, TriggerCollider triggerCollider)
     {
         _config = config;
         _gameObject = obj;
+        _triggerCollider = triggerCollider;
         Init();
     }
 
@@ -33,18 +36,18 @@ public class CharacterAttackController
 
     private async void Attack()
     {
-        if (_isAttacking)
+        if (_isAttacking == true)
         {
             return;
         }
 
-        if (!_command.Value && !_isAttacking)
+        if (_command.Value == false && _isAttacking == false)
         {
             Debug.Log("END ATTACK");
             _command.IsComplete = true;
             return;
         }
-        else if (_command.Value && !_isAttacking)
+        else if (_command.Value == true && _isAttacking == false)
         {
             if (_attackTask == null)
             {
@@ -60,6 +63,16 @@ public class CharacterAttackController
     {
         _characterAnimationController.Attack();
         await Task.Delay((int)(_config.AttackDelay * 1000));
+        Damage();
+        await Task.Delay((int)(_config.AttackDelay * 1000));
         _isAttacking = false;
+    }
+
+    private void Damage()
+    {
+        foreach (IDamageable target in _triggerCollider.ColliderTarget)
+        {
+            target.TakeDamage(_config.BasicAttack);
+        }
     }
 }

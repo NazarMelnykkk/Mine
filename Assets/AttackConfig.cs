@@ -4,5 +4,5 @@ using UnityEngine;
 public class AttackConfig : ScriptableObject
 {
     public int BasicAttack = 1;
-    public float AttackDelay = 0.6f;
+    public float AttackDelay = 1f;
 }

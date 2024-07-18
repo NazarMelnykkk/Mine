@@ -7,6 +7,10 @@ public class CharacterCommandHandler : MonoBehaviour
 
     private CharacterInputController _inputController;
 
+
+    [SerializeField] private TriggerCollider _triggerCollider;
+
+
     [Header("Locomotion")]
     private CharacterLocomotionController _characterMoveHandler;
     [SerializeField] private LocomotionConfig _locomotionConfig;
@@ -27,13 +31,13 @@ public class CharacterCommandHandler : MonoBehaviour
     private void InitLocomotion()
     {
         _characterMoveHandler = new CharacterLocomotionController();
-        _characterMoveHandler.Setup(_locomotionConfig, gameObject);
+        _characterMoveHandler.Setup(_locomotionConfig, gameObject, _triggerCollider);
     }
 
     private void InitAttack()
     {
         _characterAttackController = new CharacterAttackController();
-        _characterAttackController.Setup(_attackConfig, gameObject);
+        _characterAttackController.Setup(_attackConfig, gameObject, _triggerCollider);
     }
 
     /// <summary>
