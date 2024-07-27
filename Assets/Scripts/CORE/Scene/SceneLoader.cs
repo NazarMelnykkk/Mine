@@ -6,87 +6,70 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [Header("Scene")]
-    [SerializeField] private SceneField _systemScene;
-    [SerializeField] private SceneField _menuScene;
+    [SerializeField] private List<Scene> _scenes;   
 
 
     [Header("Actions")]
     public Action OnSceneLoadEvent;
-    public Action OnSceneLoadedEvent;
-
     public Action OnSceneUnloadEvent;
-
-    public Action OnRestartGameEvent;
-
-    public List<SceneField> ActiveScene; 
 
     private void Start()
     {
-        Add(_menuScene);
+        foreach (Scene scene in _scenes)
+        {
+            if (scene.LoadingOnInitialization == true)
+            {
+                Add(scene.SceneField);
+            }
+        }
     }
 
-    public void Add(SceneField sceneToLoad)
+    public void Add(string sceneToLoad)
     {
-        StartLoadEvent();
-        SceneManager.LoadScene(sceneToLoad.SceneName, LoadSceneMode.Additive);
-        ActiveScene.Add(sceneToLoad);
-        EndLoadEvent();
+        SceneField field = GetSceneFieldByString(sceneToLoad);
+
+        SceneManager.LoadScene(field, LoadSceneMode.Additive);
+        LoadEvent();
     }
 
-    public void Transition(SceneField sceneToLoad, string sceneToUnload)
+    public void Transition(string sceneToLoad, string sceneToUnload)
     {
-        StartUnloadEvent();
+        UnloadEvent();
         SceneManager.UnloadSceneAsync(sceneToUnload);
-        ActiveScene.Remove(GetSceneFieldByString(sceneToUnload));
-
-        StartLoadEvent();
-        SceneManager.LoadScene(sceneToLoad.SceneName, LoadSceneMode.Additive);
-        ActiveScene.Add(sceneToLoad);
-        EndLoadEvent();
+    
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+        LoadEvent();
     }
 
     public void RestartGameScene(string sceneToRestart)
     {
-        RestartEvent();
-        StartUnloadEvent();
+        UnloadEvent(); //???
         SceneManager.UnloadSceneAsync(sceneToRestart);
 
-        StartLoadEvent();
         SceneManager.LoadScene(sceneToRestart, LoadSceneMode.Additive);
-        EndLoadEvent();
+        LoadEvent();
     }
 
     private SceneField GetSceneFieldByString(string sceneName)
     {
-        foreach (var scene in ActiveScene)
+        foreach (var scene in _scenes)
         {
             if(scene.SceneName == sceneName)
             {
-                return scene;
+                return scene.SceneField;
             }
         }
 
         return null;
     }
 
-    private void StartLoadEvent()
+    private void LoadEvent()
     {
         OnSceneLoadEvent?.Invoke();  
     }
 
-    private void EndLoadEvent()
-    {
-        OnSceneLoadedEvent?.Invoke();
-    }
-
-    private void StartUnloadEvent()
+    private void UnloadEvent()
     {
         OnSceneUnloadEvent?.Invoke();
     }
-
-    private void RestartEvent()
-    {
-        OnRestartGameEvent?.Invoke();
-    }
-
 }

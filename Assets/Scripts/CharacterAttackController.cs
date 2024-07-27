@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterAttackController
@@ -43,7 +42,7 @@ public class CharacterAttackController
 
         if (_command.Value == false && _isAttacking == false)
         {
-            Debug.Log("END ATTACK");
+            _characterAnimationController.Idle();
             _command.IsComplete = true;
             return;
         }
@@ -63,7 +62,9 @@ public class CharacterAttackController
     {
         _characterAnimationController.Attack();
         await Task.Delay((int)(_config.AttackDelay * 1000));
+
         Damage();
+
         await Task.Delay((int)(_config.AttackDelay * 1000));
         _isAttacking = false;
     }

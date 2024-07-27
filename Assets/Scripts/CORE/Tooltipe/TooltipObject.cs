@@ -35,7 +35,7 @@ public class TooltipObject : TooltipBase
         if (_showDelayCoroutine != null)
         {
             StopCoroutine(_showDelayCoroutine);
-            DISystem.Instance.TooltipHandler.Hide();
+            References.Instance.TooltipHandler.Hide();
             _showDelayCoroutine = null;
             _isShowing = false;
         }
@@ -68,7 +68,7 @@ public class TooltipObject : TooltipBase
         {
             if (_isShowing == true)
             {
-                DISystem.Instance.TooltipHandler.Show(_information);
+                References.Instance.TooltipHandler.Show(_information);
             }
             yield break;
         }
@@ -77,6 +77,6 @@ public class TooltipObject : TooltipBase
     protected override void OnDisable()
     {
         _information = null;
-        DISystem.Instance.TooltipHandler.Hide();
+        References.Instance.TooltipHandler.Hide();
     }
 }

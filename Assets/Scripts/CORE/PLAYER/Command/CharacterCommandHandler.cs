@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class CharacterCommandHandler : MonoBehaviour
 {
-
     public CharacterCommand CurrentCommand;
 
     private CharacterInputController _inputController;
 
-
     [SerializeField] private TriggerCollider _triggerCollider;
-
 
     [Header("Locomotion")]
     private CharacterLocomotionController _characterMoveHandler;
@@ -18,6 +15,8 @@ public class CharacterCommandHandler : MonoBehaviour
     [Header("Attack")]
     private CharacterAttackController _characterAttackController;
     [SerializeField] private AttackConfig _attackConfig;
+
+    
 
     private void Start()
     {
@@ -45,23 +44,21 @@ public class CharacterCommandHandler : MonoBehaviour
     /// </summary>
     /// <param name="newCommand"></param>
     public void SetCommand(CharacterCommand newCommand)
-    {
+    {    
         CurrentCommand = newCommand;
     }
 
     private void Update()
     {
-        if (CurrentCommand == null)
+        if (CurrentCommand != null)
         {
-            return;
+            ProcessCommand(CurrentCommand);
         }
-
-        ProcessCommand();
     }
 
-    private void ProcessCommand()
+    private void ProcessCommand(CharacterCommand CharacterCommand)
     {
-        switch (CurrentCommand.CommandType)
+        switch (CharacterCommand.CommandType)
         {
             case CommandType.None:
                 break;

@@ -17,8 +17,8 @@ public class DataPersistenceHandlerBase : MonoBehaviour
     {
         LoadGame();
 
-        DISystem.Instance.SceneLoader.OnSceneLoadedEvent += LoadGame;
-        DISystem.Instance.SceneLoader.OnSceneUnloadEvent += SaveGame;
+        References.Instance.SceneLoader.OnSceneLoadEvent += LoadGame;
+        References.Instance.SceneLoader.OnSceneUnloadEvent += SaveGame;
     }
 
     protected virtual void NewGame()

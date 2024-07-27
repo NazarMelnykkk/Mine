@@ -27,19 +27,19 @@ public class CharacterInputController
 
     private void Subscribe()
     {
-        DISystem.Instance.InputController.OnMovePerformedEvent += Move;
-        DISystem.Instance.InputController.OnMoveCanceledEvent += Move;
+        References.Instance.InputController.OnMovePerformedEvent += Move;
+        References.Instance.InputController.OnMoveCanceledEvent += Move;
 
-        DISystem.Instance.InputController.OnFire1PerformedEvent += AttackStart;
-        DISystem.Instance.InputController.OnFire1CanceledEvent += AttackEnd;
+        References.Instance.InputController.OnFire1PerformedEvent += AttackStart;
+        References.Instance.InputController.OnFire1CanceledEvent += AttackEnd;
     }
 
     public void Unsubscribe()
     {
-        DISystem.Instance.InputController.OnMovePerformedEvent -= Move;
-        DISystem.Instance.InputController.OnMoveCanceledEvent -= Move;
+        References.Instance.InputController.OnMovePerformedEvent -= Move;
+        References.Instance.InputController.OnMoveCanceledEvent -= Move;
 
-        DISystem.Instance.InputController.OnFire1PerformedEvent -= AttackStart;
-        DISystem.Instance.InputController.OnFire1CanceledEvent -= AttackEnd;
+        References.Instance.InputController.OnFire1PerformedEvent -= AttackStart;
+        References.Instance.InputController.OnFire1CanceledEvent -= AttackEnd;
     }
 }

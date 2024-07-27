@@ -1,19 +1,20 @@
 using UnityEngine;
 
-public class DISystem : MonoBehaviour
+public class References : MonoBehaviour
 {
-    public static DISystem Instance;
+    public static References Instance;
 
-    [Header("Links")]
+    [Header("Links System")]
     public DataPersistenceHandlerBase DataPersistenceHandlerBase;
     public AudioHandler AudioHandler;
     public InputController InputController;
     public SceneLoader SceneLoader;
-    public AlertsHandler AlertsHandler;
-    public TooltipHandler TooltipHandler;
     public CameraFollow CameraFollow;
     public CameraSnaking CameraSnaking;
 
+    [Header("Links UI")]
+    public AlertsHandler AlertsHandler;
+    public TooltipHandler TooltipHandler;
 
     private void Awake()
     {

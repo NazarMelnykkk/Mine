@@ -13,6 +13,6 @@ public class ButtonToggle : ButtonCustomBase
 
     private void PlaySound()
     {
-        DISystem.Instance.AudioHandler.PlaySound(SoundKeys.UI_Click_Type, SoundKeys.UI_Click);
+        References.Instance.AudioHandler.PlaySound(SoundKeys.UI_Click_Type, SoundKeys.UI_Click);
     }
 }

@@ -9,12 +9,12 @@ public class CharacterInteractController : MonoBehaviour
 
     private void OnEnable()
     {
-        DISystem.Instance.InputController.OnInteractionPerformedEvent += Interact;
+        References.Instance.InputController.OnInteractionPerformedEvent += Interact;
     }
 
     private void OnDisable()
     {
-        DISystem.Instance.InputController.OnInteractionPerformedEvent -= Interact;
+        References.Instance.InputController.OnInteractionPerformedEvent -= Interact;
     }
 
     private void Interact()

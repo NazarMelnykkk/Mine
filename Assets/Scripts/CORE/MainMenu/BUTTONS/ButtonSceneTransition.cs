@@ -9,12 +9,12 @@ public class ButtonSceneTransition : ButtonCustomBase
     {
         base.Click();
 
-        DISystem.Instance.SceneLoader.Transition(_sceneToTransition, gameObject.scene.name);
+        References.Instance.SceneLoader.Transition(_sceneToTransition, gameObject.scene.name);
         PlaySound();
     }
 
     private void PlaySound()
     {
-        DISystem.Instance.AudioHandler.PlaySound(SoundKeys.UI_Click_Type, SoundKeys.UI_Click);
+        References.Instance.AudioHandler.PlaySound(SoundKeys.UI_Click_Type, SoundKeys.UI_Click);
     }
 }

@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         Initialize();
-        DISystem.Instance.InputController.OnScrollPerformedIvent += Zoom;
+        References.Instance.InputController.OnScrollPerformedIvent += Zoom;
     }
 
     public void SetTarget(GameObject target)

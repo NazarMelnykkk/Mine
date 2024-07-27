@@ -23,6 +23,11 @@ public class AlertsHandler : MonoBehaviour
     [SerializeField] private GameObject _popupHolder;
     private int _popupIndex = 0;
 
+    private void Awake()
+    {
+        References.Instance.AlertsHandler = this;
+    }
+
     private void Start()
     {
         AlertLetter("iasdasd asdasd as" +

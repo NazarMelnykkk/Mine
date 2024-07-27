@@ -13,6 +13,11 @@ public class TooltipHandler : MonoBehaviour
 
     private Coroutine _updatePosition;
 
+    private void Awake()
+    {
+        References.Instance.TooltipHandler = this;
+    }
+
     public void Show(string text)
     {
         _TooltipText.text = text;

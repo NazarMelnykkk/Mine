@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static SoundsData;
 
@@ -17,20 +18,50 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
     [SerializeField] private SoundConfig[] _SFX;
     [SerializeField] private SoundConfig[] _ambients;
 
+    [Header("KEYS")]
+    private Dictionary<string, SoundConfig> _soundDictionary;
+
+
+    private void Awake()
+    {
+        InitializeSoundDictionary();
+    }
+
+    private void InitializeSoundDictionary()
+    {
+        _soundDictionary = new Dictionary<string, SoundConfig>();
+
+        AddSoundsToDictionary(_ui);
+        AddSoundsToDictionary(_musics);
+        AddSoundsToDictionary(_SFX);
+        AddSoundsToDictionary(_ambients);
+    }
+
+    private void AddSoundsToDictionary(SoundConfig[] soundConfigs)
+    {
+        foreach (SoundConfig config in soundConfigs)
+        {
+            if (!_soundDictionary.ContainsKey(config.Sound.Name))
+            {
+                _soundDictionary.Add(config.Sound.Name, config);
+            }
+        }
+    }
+
     public void PlaySound(SoundType type, string soundID)
     {
-        Sound currentSound = GetSoundByType(type, soundID);
-        if (currentSound == null)
+        if (_soundDictionary.TryGetValue(soundID, out SoundConfig soundConfig) && soundConfig.Sound.Type == type)
+        {
+            AudioSource audioSource = GetAudioSourceByType(type);
+            if (audioSource != null)
+            {
+                SetRandomPitchValue(audioSource, soundConfig.Sound);
+                audioSource.PlayOneShot(soundConfig.Sound.AudioClip);
+            }
+        }
+        else
         {
             Debug.Log($"Sound {soundID} of type {type} not found");
-            return;
-        }
-
-        AudioSource audioSource = GetAudioSourceByType(type);
-        if (audioSource != null)
-        {
-            SetRandomPithcValue(audioSource, currentSound);
-            audioSource.PlayOneShot(currentSound.AudioClip);
         }
     }
 
@@ -47,41 +78,20 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
         AudioSource audioSource = GetAudioSourceByType(currentSound.Type);
         if (audioSource != null)
         {
-            SetRandomPithcValue(audioSource, currentSound);
+            SetRandomPitchValue(audioSource, currentSound);
             audioSource.PlayOneShot(currentSound.AudioClip);
         }
     }
 
-    private void SetRandomPithcValue(AudioSource audioSource, Sound sound)
+    private void SetRandomPitchValue(AudioSource audioSource, Sound sound)
     {
         audioSource.pitch = UnityEngine.Random.Range(sound.MinPitch, sound.MaxPitch);
-    }
-
-    private Sound GetSoundByType(SoundType type, string soundName)
-    {
-        SoundConfig[] soundsArray = GetSoundsArrayByType(type);
-        if (soundsArray == null)
-        {
-            Debug.Log($"Sounds of type {type} not found");
-            return null;
-        }
-
-        SoundConfig foundSoundConfig = Array.Find(soundsArray, currentSound => currentSound.Sound.Name == soundName);
-        if (foundSoundConfig == null)
-        {
-            Debug.Log($"Sound {soundName} of type {type} not found");
-            return null;
-        }
-
-        return foundSoundConfig.Sound;
     }
 
     public float GetVolumeByType(SoundType type)
     {
         switch (type)
         {
-            case SoundType.Master:
-                return AudioListener.volume;
             case SoundType.UI:
                 return _uiAudioSource.volume;
             case SoundType.Music:
@@ -100,47 +110,21 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
     {
         switch (type)
         {
-            case SoundType.Master:
-                AudioListener.volume = volume;
-                break;
-
             case SoundType.UI:
                 _uiAudioSource.volume = volume;
                 break;
-
             case SoundType.Music:
                 _musicAudioSource.volume = volume;
                 break;
-
             case SoundType.SFX:
                 _SFXAudioSource.volume = volume;
                 break;
-
             case SoundType.Ambient:
                 _ambientAudioSource.volume = volume;
                 break;
         }
 
-        SaveByType(DISystem.Instance.DataPersistenceHandlerBase.GameData,type, volume);
-
-    }
-
-    private SoundConfig[] GetSoundsArrayByType(SoundType type)
-    {
-        switch (type)
-        {
-            case SoundType.UI:
-                return _ui;
-            case SoundType.Music:
-                return _musics;
-            case SoundType.Ambient:
-                return _ambients;
-            case SoundType.SFX:
-                return _SFX;
-            default:
-                Debug.Log($"Unknown sound type {type}");
-                return null;
-        }
+        SaveByType(References.Instance.DataPersistenceHandlerBase.GameData, type, volume);
     }
 
     private AudioSource GetAudioSourceByType(SoundType type)
@@ -199,6 +183,7 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
             data.SoundsData.SoundVolumeData.Add(id, soundData);
         }
     }
+
     public void LoadData(GameData data)
     {
         if (data != null && data.SoundsData != null)
@@ -206,11 +191,12 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
             SoundData soundData;
             foreach (SoundType type in Enum.GetValues(typeof(SoundType)))
             {
-                string id = type.ToString(); 
+                string id = type.ToString();
 
-                data.SoundsData.SoundVolumeData.TryGetValue(id, out soundData);
-
-                SetVolumeByType(type, soundData.Volume);
+                if (data.SoundsData.SoundVolumeData.TryGetValue(id, out soundData))
+                {
+                    SetVolumeByType(type, soundData.Volume);
+                }
             }
         }
     }

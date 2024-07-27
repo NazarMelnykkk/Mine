@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        DISystem.Instance.CameraFollow.SetTarget(gameObject);
+        References.Instance.CameraFollow.SetTarget(gameObject);
     }
 
     public void PickUpItem(PickableObject item)

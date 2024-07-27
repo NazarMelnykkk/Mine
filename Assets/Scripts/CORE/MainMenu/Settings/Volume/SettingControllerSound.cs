@@ -4,9 +4,6 @@ public class SettingControllerSound : SettingControllerBase
     {
         switch (soundType)
         {
-            case SoundType.Master:
-                SetVolume(soundType, value);
-                break;
             case SoundType.UI:
                 SetVolume(soundType, value);
                 break;
@@ -24,12 +21,12 @@ public class SettingControllerSound : SettingControllerBase
 
     private void SetVolume(SoundType soundType, float value) 
     {
-        DISystem.Instance.AudioHandler.SetVolumeByType(soundType, value);
+        References.Instance.AudioHandler.SetVolumeByType(soundType, value);
         
     }
 
     public float GetVolume(SoundType soundType)
     {
-        return DISystem.Instance.AudioHandler.GetVolumeByType(soundType);
+        return References.Instance.AudioHandler.GetVolumeByType(soundType);
     }
 }
