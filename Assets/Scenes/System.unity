@@ -847,7 +847,8 @@ MonoBehaviour:
   _ui:
   - {fileID: 11400000, guid: 2e3cc9ca4d84a0a47b5498313f82acf8, type: 2}
   _musics: []
-  _SFX: []
+  _SFX:
+  - {fileID: 11400000, guid: 23b6bca47ac5c09428cc5105bc3b6371, type: 2}
   _ambients: []
 --- !u!1 &1613590310
 GameObject:

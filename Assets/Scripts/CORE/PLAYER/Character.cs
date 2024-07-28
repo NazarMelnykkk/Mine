@@ -4,7 +4,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 
-    [SerializeField] private List<PickableObject> inventory = new List<PickableObject>();
+    [SerializeField] private List<CollectableItem> inventory = new List<CollectableItem>();
 
 
     private void Awake()
@@ -12,8 +12,9 @@ public class Character : MonoBehaviour
         References.Instance.CameraFollow.SetTarget(gameObject);
     }
 
-    public void PickUpItem(PickableObject item)
+    public void PickUpItem(CollectableItem item)
     {
         inventory.Add(item);
     }
+
 }

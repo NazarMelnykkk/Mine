@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CameraSnaking : MonoBehaviour
 {
+    //[]
     public IEnumerator Snake(float duration, float magnitude)
     {
         float elapsed = 0.0f;

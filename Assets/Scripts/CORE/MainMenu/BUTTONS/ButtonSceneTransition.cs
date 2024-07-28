@@ -15,6 +15,6 @@ public class ButtonSceneTransition : ButtonCustomBase
 
     private void PlaySound()
     {
-        References.Instance.AudioHandler.PlaySound(SoundKeys.UI_Click_Type, SoundKeys.UI_Click);
+        References.Instance.AudioHandler.PlaySound(SoundKeys.UICLICK_TYPE, SoundKeys.UICLICK);
     }
 }

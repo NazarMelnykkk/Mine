@@ -36,8 +36,11 @@ public class TooltipHandler : MonoBehaviour
             _updatePosition = null;
         }
 
-        _backGroundRectTransformBox.gameObject.SetActive(false);
-        _TooltipText.text = null;
+        if (_backGroundRectTransformBox != null)
+        {
+            _backGroundRectTransformBox.gameObject.SetActive(false);
+            _TooltipText.text = null;
+        }
     }
 
     private IEnumerator UpdatePosition()

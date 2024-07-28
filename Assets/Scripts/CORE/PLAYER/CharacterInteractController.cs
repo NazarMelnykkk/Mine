@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterInteractController : MonoBehaviour
@@ -6,6 +7,7 @@ public class CharacterInteractController : MonoBehaviour
     private IInteractable _currentlyHovered;
 
     [SerializeField] private Character _character;
+    [SerializeField] private Collider2D _collider;
 
     private void OnEnable()
     {
@@ -22,6 +24,7 @@ public class CharacterInteractController : MonoBehaviour
         if (_currentlyHovered != null)
         {
             _currentlyHovered.Interact(_character);
+            StartCoroutine(ReEnableTrigger());
         }
     }
 
@@ -47,5 +50,12 @@ public class CharacterInteractController : MonoBehaviour
             _currentlyHovered.UnFocus();
             _currentlyHovered = null;
         }
+    }
+
+    private IEnumerator ReEnableTrigger()
+    {
+        _collider.enabled = false;
+        yield return new WaitForEndOfFrame(); 
+        _collider.enabled = true;
     }
 }

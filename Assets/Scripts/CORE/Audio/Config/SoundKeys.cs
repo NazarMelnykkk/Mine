@@ -4,8 +4,11 @@
 public static class SoundKeys
 {
     //
-    public const string UI_Click = "UIClick";
-    public const SoundType UI_Click_Type = SoundType.UI;
-    //
+    public const string UICLICK = "UIClick";
+    public const SoundType UICLICK_TYPE = SoundType.UI;
+    //CollectItem
+
+    public const string COLLECTITEM = "CollectItem";
+    public const SoundType COLLECTITEM_TYPE = SoundType.SFX;
 
 }

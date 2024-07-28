@@ -56,7 +56,7 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
             if (audioSource != null)
             {
                 SetRandomPitchValue(audioSource, soundConfig.Sound);
-                audioSource.PlayOneShot(soundConfig.Sound.AudioClip);
+                audioSource.PlayOneShot(GetRandomClip(soundConfig.Sound.AudioClip));
             }
         }
         else
@@ -79,7 +79,7 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
         if (audioSource != null)
         {
             SetRandomPitchValue(audioSource, currentSound);
-            audioSource.PlayOneShot(currentSound.AudioClip);
+            audioSource.PlayOneShot(GetRandomClip(currentSound.AudioClip));
         }
     }
 
@@ -143,6 +143,18 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
                 Debug.LogError($"Unknown sound type {type}");
                 return null;
         }
+    }
+
+    public AudioClip GetRandomClip(List<AudioClip> clips)
+    {
+        if (clips == null || clips.Count == 0)
+        {
+            Debug.LogError("The clip list is null or empty.");
+            return null;
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, clips.Count);
+        return clips[randomIndex];
     }
 
     public void SaveData(GameData data)
