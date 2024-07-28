@@ -61,7 +61,7 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
         }
         else
         {
-            Debug.Log($"Sound {soundID} of type {type} not found");
+            Debug.LogError($"Sound {soundID} of type {type} not found");
         }
     }
 
@@ -71,7 +71,7 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
 
         if (currentSound == null)
         {
-            Debug.Log($"Config {config.name} not found");
+            Debug.LogError($"Config {config.name} not found");
             return;
         }
 
@@ -140,7 +140,7 @@ public class AudioHandler : MonoBehaviour, IDataPersistence
             case SoundType.SFX:
                 return _SFXAudioSource;
             default:
-                Debug.Log($"Unknown sound type {type}");
+                Debug.LogError($"Unknown sound type {type}");
                 return null;
         }
     }

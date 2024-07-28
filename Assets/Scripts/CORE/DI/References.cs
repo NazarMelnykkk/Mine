@@ -11,6 +11,7 @@ public class References : MonoBehaviour
     public SceneLoader SceneLoader;
     public CameraFollow CameraFollow;
     public CameraSnaking CameraSnaking;
+    public PauseHandler PauseHandler;
 
     [Header("Links UI")]
     public AlertsHandler AlertsHandler;
@@ -21,12 +22,13 @@ public class References : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
-        Application.targetFrameRate = 60;
+        
     }
 }

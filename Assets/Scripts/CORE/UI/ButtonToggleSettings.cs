@@ -1,14 +1,13 @@
-using UnityEngine;
-
-public class ButtonToggle : ButtonCustomBase
+public class ButtonToggleSettings : ButtonCustomBase
 {
-    [SerializeField] private UIContainerController _container;
+    
     public override void Click()
     {
         base.Click();
-
+       
         PlaySound();
-        _container.Toggle();
+
+        References.Instance.PauseHandler.ToggleSetting();
     }
 
     private void PlaySound()

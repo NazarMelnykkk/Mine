@@ -48,7 +48,7 @@ public class CharacterCommandHandler : MonoBehaviour
         CurrentCommand = newCommand;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (CurrentCommand != null)
         {

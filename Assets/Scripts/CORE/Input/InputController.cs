@@ -24,6 +24,8 @@ public class InputController : MonoBehaviour
 
         InputActions.Character.Interaction.performed += InteractionPerformed;
 
+        InputActions.Character.Menu.performed += MenuPerformed;
+
     }
 
     private void OnDisable()
@@ -37,6 +39,8 @@ public class InputController : MonoBehaviour
         InputActions.Character.Scroll.performed -= OnScrollPerformed;
 
         InputActions.Character.Interaction.performed -= InteractionPerformed;
+
+        InputActions.Character.Menu.performed -= MenuPerformed;
     }
 
     #region Move
@@ -91,6 +95,17 @@ public class InputController : MonoBehaviour
         float scrollDelta = context.ReadValue<Vector2>().y;
 
         OnScrollPerformedIvent?.Invoke(scrollDelta);
+    }
+
+    #endregion
+
+    #region Menu
+
+    public Action OnMenuPerformedEvent;
+
+    private void MenuPerformed(InputAction.CallbackContext context)
+    {
+        OnMenuPerformedEvent?.Invoke();
     }
 
     #endregion

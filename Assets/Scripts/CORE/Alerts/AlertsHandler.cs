@@ -30,13 +30,13 @@ public class AlertsHandler : MonoBehaviour
 
     private void Start()
     {
-        AlertLetter("iasdasd asdasd as" +
+       /* AlertLetter("iasdasd asdasd as" +
             " asdas d" +
             " asd" +
             "asd " +
             "as" +
             "d as" +
-            "d ", KeysColor.RED, 1);
+            "d ", KeysColor.RED, 1);*/
     }
 
     /*private void Awake()

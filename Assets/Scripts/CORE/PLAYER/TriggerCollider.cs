@@ -8,7 +8,6 @@ public class TriggerCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("11");
         if (((1 << other.gameObject.layer) & TargetLayers) != 0)
         {
             IDamageable damageable = other.GetComponent<IDamageable>();

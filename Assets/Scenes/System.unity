@@ -175,17 +175,17 @@ MonoBehaviour:
     LoadingOnInitialization: 0
     IsGameplayScene: 0
     DontUnload: 0
-  - SceneName: UI
-    SceneField:
-      _sceneAsset: {fileID: 102900000, guid: a44cdead97aaab8408067ec62b07781f, type: 3}
-      _sceneName: UI
-    LoadingOnInitialization: 1
-    IsGameplayScene: 0
-    DontUnload: 0
   - SceneName: Menu
     SceneField:
       _sceneAsset: {fileID: 102900000, guid: 134fb0b25c5aebb4b8858f1a92930632, type: 3}
       _sceneName: Menu
+    LoadingOnInitialization: 1
+    IsGameplayScene: 0
+    DontUnload: 0
+  - SceneName: UI
+    SceneField:
+      _sceneAsset: {fileID: 102900000, guid: a44cdead97aaab8408067ec62b07781f, type: 3}
+      _sceneName: UI
     LoadingOnInitialization: 1
     IsGameplayScene: 0
     DontUnload: 0
@@ -565,8 +565,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1069001474}
+  - component: {fileID: 1069001475}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Pause Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,6 +588,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2045500040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069001475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069001473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed027abe98c0412488a3840fdd3718fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1070665180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1215,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1383,7 +1396,7 @@ GameObject:
   - component: {fileID: 2045500041}
   - component: {fileID: 2045500042}
   m_Layer: 0
-  m_Name: DI System
+  m_Name: Ref
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1402,9 +1415,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 543452608}
   - {fileID: 905193555}
   - {fileID: 1240553608}
-  - {fileID: 543452608}
   - {fileID: 8225733}
   - {fileID: 1070665181}
   - {fileID: 980980923}
@@ -1429,6 +1442,7 @@ MonoBehaviour:
   SceneLoader: {fileID: 8225734}
   CameraFollow: {fileID: 1800152676}
   CameraSnaking: {fileID: 1800152675}
+  PauseHandler: {fileID: 1069001475}
   AlertsHandler: {fileID: 0}
   TooltipHandler: {fileID: 0}
 --- !u!114 &2045500042
