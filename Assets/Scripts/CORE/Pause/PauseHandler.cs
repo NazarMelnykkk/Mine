@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseHandler : MonoBehaviour
@@ -44,8 +42,6 @@ public class PauseHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(References.Instance);
-        //Debug.Log(References.Instance.);
         References.Instance.InputController.OnMenuPerformedEvent += TogglePause;
     }
 

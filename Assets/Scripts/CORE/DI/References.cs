@@ -19,6 +19,7 @@ public class References : MonoBehaviour
 
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -26,9 +27,10 @@ public class References : MonoBehaviour
         }
         else
         {
+            Debug.Log("DESCTORY");
             Destroy(gameObject);
         }
 
-        
+        Debug.Log("ITIN");
     }
 }
