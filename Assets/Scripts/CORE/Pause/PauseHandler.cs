@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class PauseHandler : MonoBehaviour
+public class PauseHandler : IDisposable
 {
 
     private PauseMenuController _pauseMenuController;
@@ -40,15 +41,13 @@ public class PauseHandler : MonoBehaviour
         Time.timeScale = 1f; 
     }
 
-    private void OnEnable()
+    public void Setup()
     {
         References.Instance.InputController.OnMenuPerformedEvent += TogglePause;
     }
 
-    private void OnDisable()
+    public void Dispose()
     {
         References.Instance.InputController.OnMenuPerformedEvent -= TogglePause;
     }
-
-
 }

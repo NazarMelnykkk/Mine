@@ -2,8 +2,8 @@ using System;
 
 public interface IReadOnlyInventorySlot 
 {
-    public event Action<string> ItemIdChanged;
-    public event Action<int> ItemAmountChanged;
+    public event Action<string> OnItemIdChangedEvent;
+    public event Action<int> OnItemAmountChangedEvent;
 
     public string ItemId { get;}
     public int Amount { get; }

@@ -27,10 +27,20 @@ public class References : MonoBehaviour
         }
         else
         {
-            Debug.Log("DESCTORY");
             Destroy(gameObject);
         }
-
-        Debug.Log("ITIN");
     }
+
+    private void Start()
+    {
+        CreatePauseHandler();
+    }
+
+
+    private void CreatePauseHandler()
+    {
+        PauseHandler = new PauseHandler();
+        PauseHandler.Setup();
+    }
+
 }

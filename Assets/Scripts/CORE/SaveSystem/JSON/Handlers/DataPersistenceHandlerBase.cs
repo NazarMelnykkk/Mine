@@ -43,6 +43,7 @@ public class DataPersistenceHandlerBase : MonoBehaviour
         }
     }
 
+    [ContextMenu("SAVE")]
     public virtual void SaveGame()
     {
         if (GameData == null)

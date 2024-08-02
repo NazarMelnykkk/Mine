@@ -2,8 +2,8 @@ using System;
 
 public class InventorySlot : IReadOnlyInventorySlot
 {
-    public event Action<string> ItemIdChanged;
-    public event Action<int> ItemAmountChanged;
+    public event Action<string> OnItemIdChangedEvent;
+    public event Action<int> OnItemAmountChangedEvent;
 
     public string ItemId
     {
@@ -13,7 +13,7 @@ public class InventorySlot : IReadOnlyInventorySlot
             if (_data.ItemId != value)
             {
                 _data.ItemId = value;
-                ItemIdChanged?.Invoke(value);
+                OnItemIdChangedEvent?.Invoke(value);
             }
         }
     }
@@ -25,7 +25,7 @@ public class InventorySlot : IReadOnlyInventorySlot
             if (_data.Amount != value)
             {
                 _data.Amount = value;
-                ItemAmountChanged?.Invoke(value);
+                OnItemAmountChangedEvent?.Invoke(value);
             }
         }
     }

@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class ItemConfigBase : ScriptableObject
+[CreateAssetMenu(fileName = "Items", menuName = "Items/Base")]
+public class ItemConfigBase : UpdatableData
 {
     public Sprite Image;
     public string Name;
