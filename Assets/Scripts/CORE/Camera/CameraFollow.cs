@@ -11,8 +11,8 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Zoom")]
     private float _zoomSpeed = 0.1f;
-    private float _maxZoom = 6;
-    private float _minZoom = 3;
+    private float _maxZoom = 12;
+    private float _minZoom = 6;
 
 
     private void Start()
@@ -39,8 +39,6 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    #region Follow
-
     private void Follow()
     {
         if (_target != null)
@@ -51,19 +49,11 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Zoom
-
     private void Zoom(float delta)
     {
         float newZoom = Mathf.Clamp(_offset.z - delta * _zoomSpeed, _minZoom, _maxZoom);
         _offset.z = newZoom;
         Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, newZoom, _zoomSpeed);
     }
-
-
-    #endregion
-
 }
 

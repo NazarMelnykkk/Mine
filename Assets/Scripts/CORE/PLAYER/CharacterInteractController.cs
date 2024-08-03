@@ -7,7 +7,12 @@ public class CharacterInteractController : MonoBehaviour
     private IInteractable _currentlyHovered;
 
     [SerializeField] private Character _character;
-    [SerializeField] private Collider2D _collider;
+    private Collider2D _collider;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider2D>();
+    }
 
     private void OnEnable()
     {
