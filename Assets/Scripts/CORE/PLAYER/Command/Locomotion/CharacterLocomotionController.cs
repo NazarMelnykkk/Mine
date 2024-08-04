@@ -1,34 +1,33 @@
 using UnityEngine;
-
 public class CharacterLocomotionController : ICommandHandler
-{
-    private CharacterCommand _command;
-    private LocomotionConfig _config;
-    
+{  
     private float _verticalDirection;
     private float _horizontalDirection;
     private Vector2 _direction;
 
     [Header("Components")]
-    private GameObject _gameObject;
-    private Transform _transform;
-    private Rigidbody2D _rb;
+    private CharacterCommand _command;
+    private Character _character;
+
+    private LocomotionConfig _config;
     private TriggerCollider _triggerCollider;
     private CharacterAnimationController _characterAnimationController;
+    private Transform _transform;
+    private Rigidbody2D _rb;
 
-    public void Setup(LocomotionConfig config , GameObject obj, TriggerCollider attackTrigger)
+    public void Setup(Character character)
     {
-        _config = config;
-        _gameObject = obj;
-        _triggerCollider = attackTrigger;
+        _character = character;
         Init();
     }
 
     private void Init()
     {
-        _transform = _gameObject.transform;
-        _rb = _gameObject.GetComponent<Rigidbody2D>();
-        _characterAnimationController = _gameObject.GetComponent<CharacterAnimationController>();
+        _config = _character.LocomotionConfig;
+        _triggerCollider = _character.TriggerCollider;
+        _transform = _character.transform;
+        _rb = _character.Rigidbody2D;
+        _characterAnimationController = _character.CharacterAnimationController;
     }
 
     public void ProcessCommand(CharacterCommand command)

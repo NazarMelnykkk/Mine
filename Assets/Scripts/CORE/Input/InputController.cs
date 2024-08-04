@@ -26,6 +26,8 @@ public class InputController : MonoBehaviour
 
         InputActions.Character.Menu.performed += MenuPerformed;
 
+        InputActions.Character.Action.performed += ActionPerformed;
+
     }
 
     private void OnDisable()
@@ -41,6 +43,8 @@ public class InputController : MonoBehaviour
         InputActions.Character.Interaction.performed -= InteractionPerformed;
 
         InputActions.Character.Menu.performed -= MenuPerformed;
+
+        InputActions.Character.Action.performed -= ActionPerformed;
     }
 
     #region Move
@@ -109,6 +113,18 @@ public class InputController : MonoBehaviour
     }
 
     #endregion
+
+    #region Action
+
+    public Action OnActionPerformedEvent;
+
+    private void ActionPerformed(InputAction.CallbackContext context)
+    {
+        OnActionPerformedEvent?.Invoke();
+    }
+
+    #endregion
+
 
     #region Jump
 

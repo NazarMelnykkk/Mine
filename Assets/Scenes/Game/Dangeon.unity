@@ -528,9 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a8d02e126b90d45b9383618416ed96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerCollider: {fileID: 474031998}
-  _locomotionConfig: {fileID: 11400000, guid: 88aa12df2ca7f1a45807df4ec30a4c7c, type: 2}
-  _attackConfig: {fileID: 11400000, guid: 492a5cbe70dce7847b1ea9c05812efce, type: 2}
+  _character: {fileID: 167097202}
 --- !u!50 &167097201
 Rigidbody2D:
   serializedVersion: 4
@@ -570,7 +568,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988e128ec05f56b429f367dbb2f9842a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
+  Rigidbody2D: {fileID: 167097201}
+  TriggerCollider: {fileID: 474031998}
+  CharacterAnimationController: {fileID: 167097203}
+  LocomotionConfig: {fileID: 11400000, guid: 88aa12df2ca7f1a45807df4ec30a4c7c, type: 2}
+  AttackConfig: {fileID: 11400000, guid: 492a5cbe70dce7847b1ea9c05812efce, type: 2}
+  currentItem: {fileID: 11400000, guid: 1c948163177625d4cb77ec2f1e8effc0, type: 2}
 --- !u!114 &167097203
 MonoBehaviour:
   m_ObjectHideFlags: 0

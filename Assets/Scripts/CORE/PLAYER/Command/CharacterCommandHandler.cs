@@ -3,25 +3,21 @@ using UnityEngine;
 public class CharacterCommandHandler : MonoBehaviour
 {
     public CharacterCommand CurrentCommand;
-
+    [SerializeField] private Character _character;
     private CharacterInputController _inputController;
-
-    [SerializeField] private TriggerCollider _triggerCollider;
 
     [Header("Locomotion")]
     private CharacterLocomotionController _characterMoveHandler;
-    [SerializeField] private LocomotionConfig _locomotionConfig;
 
-    [Header("Attack")]
-    private CharacterAttackController _characterAttackController;
-    [SerializeField] private AttackConfig _attackConfig;
+    [Header("Action")]
+    private CharacterActionController _characterActionController;
 
-    
+    private bool _isCommandProcessing = false;
 
     private void Start()
     {
         InitLocomotion();
-        InitAttack();
+        InitAction();
 
         _inputController = new CharacterInputController();
         _inputController.Setup(this);
@@ -30,21 +26,23 @@ public class CharacterCommandHandler : MonoBehaviour
     private void InitLocomotion()
     {
         _characterMoveHandler = new CharacterLocomotionController();
-        _characterMoveHandler.Setup(_locomotionConfig, gameObject, _triggerCollider);
+        _characterMoveHandler.Setup(_character);
     }
 
-    private void InitAttack()
+    private void InitAction()
     {
-        _characterAttackController = new CharacterAttackController();
-        _characterAttackController.Setup(_attackConfig, gameObject, _triggerCollider);
+        _characterActionController = new CharacterActionController();
+        _characterActionController.Setup(_character);
     }
 
-    /// <summary>
-    ///REF: characterCommandHandler.SetCommand(new CharacterCommand(CommandType.Move, direction));
-    /// </summary>
-    /// <param name="newCommand"></param>
     public void SetCommand(CharacterCommand newCommand)
-    {    
+    {
+        if (_isCommandProcessing == true && GetCurrentCommandType() != CommandType.Move)
+        {
+            return;
+        }
+
+        _isCommandProcessing = true;
         CurrentCommand = newCommand;
     }
 
@@ -65,8 +63,8 @@ public class CharacterCommandHandler : MonoBehaviour
             case CommandType.Move:
                 ProcessMoveCommand();
                 break;
-            case CommandType.Attack:
-                ProcessAttackCommand();
+            case CommandType.Action:
+                ProcessActionCommand();
                 break;
             default:
                 break;
@@ -74,13 +72,20 @@ public class CharacterCommandHandler : MonoBehaviour
 
         if (CurrentCommand.IsComplete == true)
         {
-            CompleteComand();
+            CompleteCommand();
         }
     }
 
-    private void CompleteComand()
+    private void CompleteCommand()
     {
         CurrentCommand = null;
+        _isCommandProcessing = false;
+
+        Vector2 currentDirection = _inputController.GetCurrentDirection();
+        if (currentDirection != Vector2.zero)
+        {
+            SetCommand(new CharacterCommand(CommandType.Move, currentDirection));
+        }
     }
 
     private void ProcessMoveCommand()
@@ -88,14 +93,9 @@ public class CharacterCommandHandler : MonoBehaviour
         _characterMoveHandler.ProcessCommand(CurrentCommand);
     }
 
-    private void ProcessAttackCommand()
+    private void ProcessActionCommand()
     {
-        _characterAttackController.ProcessCommand(CurrentCommand);
-    }
-
-    private void ProcessInteractCommand()
-    {
-        //moveCommandHandler.ProcessCommand(CurrentCommand);
+        _characterActionController.ProcessCommand(CurrentCommand);
     }
 
     public CommandType GetCurrentCommandType()

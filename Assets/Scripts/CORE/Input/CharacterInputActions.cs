@@ -100,6 +100,15 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""c71676bb-6b91-4106-94af-bdb8fff68808"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""AnyKey"",
                     ""type"": ""Button"",
                     ""id"": ""36e4dcc9-c19e-497c-b9d4-698f7834057d"",
@@ -296,6 +305,17 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fff81061-cce1-4cf2-8ccb-8a8624f17904"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -312,6 +332,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
         m_Character_CommandsTab = m_Character.FindAction("CommandsTab", throwIfNotFound: true);
         m_Character_Menu = m_Character.FindAction("Menu", throwIfNotFound: true);
+        m_Character_Action = m_Character.FindAction("Action", throwIfNotFound: true);
         m_Character_AnyKey = m_Character.FindAction("AnyKey", throwIfNotFound: true);
     }
 
@@ -382,6 +403,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
     private readonly InputAction m_Character_Inventory;
     private readonly InputAction m_Character_CommandsTab;
     private readonly InputAction m_Character_Menu;
+    private readonly InputAction m_Character_Action;
     private readonly InputAction m_Character_AnyKey;
     public struct CharacterActions
     {
@@ -395,6 +417,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
         public InputAction @CommandsTab => m_Wrapper.m_Character_CommandsTab;
         public InputAction @Menu => m_Wrapper.m_Character_Menu;
+        public InputAction @Action => m_Wrapper.m_Character_Action;
         public InputAction @AnyKey => m_Wrapper.m_Character_AnyKey;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
@@ -429,6 +452,9 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
             @Menu.started += instance.OnMenu;
             @Menu.performed += instance.OnMenu;
             @Menu.canceled += instance.OnMenu;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
             @AnyKey.started += instance.OnAnyKey;
             @AnyKey.performed += instance.OnAnyKey;
             @AnyKey.canceled += instance.OnAnyKey;
@@ -460,6 +486,9 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
             @Menu.started -= instance.OnMenu;
             @Menu.performed -= instance.OnMenu;
             @Menu.canceled -= instance.OnMenu;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
             @AnyKey.started -= instance.OnAnyKey;
             @AnyKey.performed -= instance.OnAnyKey;
             @AnyKey.canceled -= instance.OnAnyKey;
@@ -490,6 +519,7 @@ public partial class @CharacterInputActions: IInputActionCollection2, IDisposabl
         void OnInventory(InputAction.CallbackContext context);
         void OnCommandsTab(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
     }
 }

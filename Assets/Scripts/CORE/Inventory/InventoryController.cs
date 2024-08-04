@@ -18,6 +18,11 @@ public class InventoryController : MonoBehaviour , IDataPersistence
 
     private void Start()
     {
+
+    }
+
+    public void LoadData(GameData data)
+    {
         _inventoryDataProvider = new InventoryDataProvider(OwnerName, References.Instance.DataPersistenceHandlerBase.GameData);
         _inventoryDataProvider.LoadData();
 
@@ -27,11 +32,6 @@ public class InventoryController : MonoBehaviour , IDataPersistence
 
         _screenController = new ScreenController(_inventoryService, _ScreenView);
         _screenController.OpenInventory(OwnerName);
-    }
-
-    public void LoadData(GameData data)
-    {
-        Debug.Log("LOadData");
     }
 
 

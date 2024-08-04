@@ -3,6 +3,7 @@ using UnityEngine;
 public class CharacterInputController 
 {
     private CharacterCommandHandler _characterCommandHandler;
+    private Vector2 _currentDirection;
 
     public void Setup(CharacterCommandHandler characterCommandHandler)
     {
@@ -12,17 +13,18 @@ public class CharacterInputController
 
     private void Move(Vector2 direction)
     {
+        _currentDirection = direction;
         _characterCommandHandler.SetCommand(new CharacterCommand(CommandType.Move, direction));
     }
 
-    private void AttackStart()
+    public Vector2 GetCurrentDirection()
     {
-        _characterCommandHandler.SetCommand(new CharacterCommand(CommandType.Attack, true));
+        return _currentDirection;
     }
 
-    private void AttackEnd()
+    private void Action()
     {
-        _characterCommandHandler.SetCommand(new CharacterCommand(CommandType.Attack, false));
+        _characterCommandHandler.SetCommand(new CharacterCommand(CommandType.Action));
     }
 
     private void Subscribe()
@@ -30,8 +32,9 @@ public class CharacterInputController
         References.Instance.InputController.OnMovePerformedEvent += Move;
         References.Instance.InputController.OnMoveCanceledEvent += Move;
 
-        References.Instance.InputController.OnFire1PerformedEvent += AttackStart;
-        References.Instance.InputController.OnFire1CanceledEvent += AttackEnd;
+        References.Instance.InputController.OnActionPerformedEvent += Action;
+
+
     }
 
     public void Unsubscribe()
@@ -39,7 +42,7 @@ public class CharacterInputController
         References.Instance.InputController.OnMovePerformedEvent -= Move;
         References.Instance.InputController.OnMoveCanceledEvent -= Move;
 
-        References.Instance.InputController.OnFire1PerformedEvent -= AttackStart;
-        References.Instance.InputController.OnFire1CanceledEvent -= AttackEnd;
+        References.Instance.InputController.OnActionPerformedEvent -= Action;
+
     }
 }

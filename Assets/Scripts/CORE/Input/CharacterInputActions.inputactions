@@ -78,6 +78,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "c71676bb-6b91-4106-94af-bdb8fff68808",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "AnyKey",
                     "type": "Button",
                     "id": "36e4dcc9-c19e-497c-b9d4-698f7834057d",
@@ -272,6 +281,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fff81061-cce1-4cf2-8ccb-8a8624f17904",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
