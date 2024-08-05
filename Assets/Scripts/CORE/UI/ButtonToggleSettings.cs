@@ -1,13 +1,15 @@
+using UnityEngine;
+
 public class ButtonToggleSettings : ButtonCustomBase
 {
-    
+    [SerializeField] private bool _togleValue;
+
     public override void Click()
     {
         base.Click();
-       
         PlaySound();
 
-        References.Instance.PauseHandler.ToggleSetting();
+        References.Instance.PauseHandler.TogglePause();
     }
 
     private void PlaySound()

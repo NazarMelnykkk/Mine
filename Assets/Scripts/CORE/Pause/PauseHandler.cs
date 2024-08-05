@@ -1,20 +1,14 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PauseHandler : IDisposable
+public class PauseHandler : MonoBehaviour
 {
+    public Action OnPauseOnEvent;
+    public Action OnPauseOffEvent;
 
     private PauseMenuController _pauseMenuController;
-
-
-    /// <summary>
-    /// USE ONLY FOR MAIN MENU
-    /// </summary>
-    /// 
-    public void ToggleSetting()
-    {
-        _pauseMenuController.TogglePauseMenu();
-    }
+    private bool _isPause = false;
 
     public void GetSettingsMenu(PauseMenuController pauseMenuController)
     {
@@ -25,8 +19,22 @@ public class PauseHandler : IDisposable
     {
         if (_pauseMenuController != null)
         {
-            _pauseMenuController?.TogglePauseMenu();
+            _isPause = !_isPause;
+
+            _pauseMenuController.TogglePauseMenu(_isPause);
         }
+
+        if (_isPause == true)
+        {
+            PauseGame();
+            OnPauseOnEvent?.Invoke();
+        }
+        else 
+        {
+            ResumeGame();
+            OnPauseOffEvent?.Invoke();
+        }
+
     }
 
     public void PauseGame()
@@ -41,12 +49,12 @@ public class PauseHandler : IDisposable
         Time.timeScale = 1f; 
     }
 
-    public void Setup()
+    public void OnEnable()
     {
         References.Instance.InputController.OnMenuPerformedEvent += TogglePause;
     }
 
-    public void Dispose()
+    public void OnDisable()
     {
         References.Instance.InputController.OnMenuPerformedEvent -= TogglePause;
     }

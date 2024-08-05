@@ -11,10 +11,10 @@ public class PauseMenuController : MonoBehaviour
         References.Instance.PauseHandler.GetSettingsMenu(this);
     }
 
-    public void TogglePauseMenu()
+    public void TogglePauseMenu(bool toggleValue)
     {
 
-        _containerSettings.gameObject.SetActive(!_containerSettings.gameObject.activeSelf);
+        _containerSettings.gameObject.SetActive(toggleValue);
 
     }
 }

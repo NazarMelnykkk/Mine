@@ -23,7 +23,8 @@ public class ScaleAnimation : ScaleAnimationBase
         if (transform != null)
         {
             transform.DOScale(originalScale * _scaleFactor, _duration)
-           .SetEase(Ease.InOutSine);
+                     .SetEase(Ease.InOutSine)
+                     .SetUpdate(true);
 
         }
     }
@@ -33,7 +34,8 @@ public class ScaleAnimation : ScaleAnimationBase
         if (transform != null)
         {
             transform.DOScale(originalScale, _duration)
-               .SetEase(Ease.InOutSine);
+                     .SetEase(Ease.InOutSine)
+                     .SetUpdate(true);
         }
     }
 

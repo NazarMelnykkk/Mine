@@ -30,17 +30,4 @@ public class References : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void Start()
-    {
-        CreatePauseHandler();
-    }
-
-
-    private void CreatePauseHandler()
-    {
-        PauseHandler = new PauseHandler();
-        PauseHandler.Setup();
-    }
-
 }
