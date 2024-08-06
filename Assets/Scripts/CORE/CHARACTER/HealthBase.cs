@@ -1,33 +1,34 @@
 using System;
 using UnityEngine;
 
-
-
 public class HealthBase : MonoBehaviour , IDamageable
 {
-    [SerializeField] private HealthConfig _healthConfig;
-    [SerializeField] private int _health;
+    [SerializeField] protected HealthConfig _healthConfig;
+    [SerializeField] protected int _health;
+    [SerializeField] protected BarBase _bar;
+    [SerializeField] protected float _knockbackForceMultiplier = 1000f;
+    protected Rigidbody2D _rigidbody2D;
 
-    [SerializeField] private BarBase _bar;
 
     public event Action<int , int> OnHealthChangedEvent;
 
-    private void Awake()
+    public virtual void Awake()
     {
         _health = _healthConfig.MaxHealth;
     }
 
-    private void Start()
+    public virtual void  Start()
     {
         _bar.UpdateBar(_healthConfig.MaxHealth, _health);
     }
 
 
-    public void TakeDamage(int damageValue)
+    public virtual void TakeDamage(int damageValue ,Transform damageDealer)
     {
         if (damageValue > 0)
         {
             _health -= damageValue;
+            Knockbac(damageValue, damageDealer);
             if (_health <= 0)
             {
                 _health = 0;
@@ -39,12 +40,19 @@ public class HealthBase : MonoBehaviour , IDamageable
         }
     }
 
-    public void HealthUpdated()
+    public virtual void Knockbac(int damageValue, Transform damageDealer)
+    {
+        Vector2 knockbackDirection = (transform.position - damageDealer.position).normalized;
+        float knockbackForce = damageValue * _knockbackForceMultiplier;
+        _rigidbody2D.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+    }
+
+    public virtual void HealthUpdated()
     {
         OnHealthChangedEvent?.Invoke(_healthConfig.MaxHealth , _health);
     }
 
-    public void Die() 
+    public virtual void Die() 
     { 
 
     }

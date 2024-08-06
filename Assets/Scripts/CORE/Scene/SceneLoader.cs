@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,40 +14,40 @@ public class SceneLoader : MonoBehaviour
     public Action OnSceneLoadEvent;
     public Action OnSceneUnloadEvent;
 
-    private void Start()
+    private async void Start()
     {
         foreach (Scene scene in _scenes)
         {
             if (scene.LoadingOnInitialization == true)
             {
-                Add(scene.SceneField);
+                await Add(scene.SceneField);
             }
         }
     }
 
-    public void Add(string sceneToLoad)
+    public async Task Add(string sceneToLoad)
     {
         SceneField field = GetSceneFieldByString(sceneToLoad);
 
-        SceneManager.LoadScene(field, LoadSceneMode.Additive);
+        await LoadSceneAsync(field.SceneName);
         LoadEvent();
     }
 
-    public void Transition(string sceneToLoad, string sceneToUnload)
+    public async Task Transition(string sceneToLoad, string sceneToUnload)
     {
         UnloadEvent();
-        SceneManager.UnloadSceneAsync(sceneToUnload);
-    
-        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+        await UnloadSceneAsync(sceneToUnload);
+
+        await LoadSceneAsync(sceneToLoad);
         LoadEvent();
     }
 
-    public void RestartGameScene(string sceneToRestart)
+    public async Task RestartGameScene(string sceneToRestart)
     {
-        UnloadEvent(); //???
-        SceneManager.UnloadSceneAsync(sceneToRestart);
+        UnloadEvent();
+        await UnloadSceneAsync(sceneToRestart);
 
-        SceneManager.LoadScene(sceneToRestart, LoadSceneMode.Additive);
+        await LoadSceneAsync(sceneToRestart);
         LoadEvent();
     }
 
@@ -72,4 +73,23 @@ public class SceneLoader : MonoBehaviour
     {
         OnSceneUnloadEvent?.Invoke();
     }
+
+    private async Task LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        while (!asyncLoad.isDone)
+        {
+            await Task.Yield();
+        }
+    }
+
+    private async Task UnloadSceneAsync(string sceneName)
+    {
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(sceneName);
+        while (!asyncUnload.isDone)
+        {
+            await Task.Yield();
+        }
+    }
+
 }

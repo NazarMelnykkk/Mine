@@ -13,16 +13,11 @@ public class InventoryController : MonoBehaviour , IDataPersistence
     public void SaveData(GameData data)
     {
         Debug.Log("SAVE");
-        /*     _inventoryDataProvider*/
-    }
-
-    private void Start()
-    {
-
     }
 
     public void LoadData(GameData data)
     {
+        Debug.Log("loaD inventory data");
         _inventoryDataProvider = new InventoryDataProvider(OwnerName, References.Instance.DataPersistenceHandlerBase.GameData);
         _inventoryDataProvider.LoadData();
 

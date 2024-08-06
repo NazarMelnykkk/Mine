@@ -7,7 +7,7 @@ public class CharacterViewHolder : MonoBehaviour
 
     private void Start()
     {
-        Character character = GetComponent<Character>();
+        Character character = FindObjectOfType<Character>();
         character.CharacterViewHolder = this;
     }
 }

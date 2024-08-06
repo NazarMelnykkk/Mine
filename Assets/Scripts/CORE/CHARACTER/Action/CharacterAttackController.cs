@@ -55,7 +55,7 @@ public class CharacterAttackController
     {
         foreach (IDamageable target in _triggerCollider.ColliderTarget)
         {
-            target.TakeDamage(_config.BasicAttack);
+            target.TakeDamage(_config.BasicAttack , _character.transform);
         }
     }
 }

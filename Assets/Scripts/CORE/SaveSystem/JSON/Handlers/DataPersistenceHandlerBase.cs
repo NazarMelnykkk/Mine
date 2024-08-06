@@ -41,6 +41,7 @@ public class DataPersistenceHandlerBase : MonoBehaviour
         {
             dataPersistenceObject.LoadData(GameData);
         }
+        Debug.Log("Game Loaded");
     }
 
     [ContextMenu("SAVE")]

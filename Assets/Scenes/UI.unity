@@ -2445,7 +2445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &478801026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2625,6 +2625,10 @@ PrefabInstance:
     - target: {fileID: 8830114928457392487, guid: a0cbf8ca3c8669446a53125f52278880, type: 3}
       propertyPath: m_Name
       value: UIRootView
+      objectReference: {fileID: 0}
+    - target: {fileID: 8830114928457392487, guid: a0cbf8ca3c8669446a53125f52278880, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8887511450564651061, guid: a0cbf8ca3c8669446a53125f52278880, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11715,7 +11719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5219318864313046268
 MonoBehaviour:
   m_ObjectHideFlags: 0
