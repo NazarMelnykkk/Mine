@@ -20,7 +20,7 @@ public class TooltipHandler : MonoBehaviour
 
     public void Show(string text)
     {
-        _TooltipText.text = text;
+        _TooltipText.SetText(text);
 
         if (_updatePosition == null) 
         {
@@ -39,7 +39,7 @@ public class TooltipHandler : MonoBehaviour
         if (_backGroundRectTransformBox != null)
         {
             _backGroundRectTransformBox.gameObject.SetActive(false);
-            _TooltipText.text = null;
+            _TooltipText.SetText("");
         }
     }
 

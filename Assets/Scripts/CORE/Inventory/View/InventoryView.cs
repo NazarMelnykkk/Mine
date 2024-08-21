@@ -9,7 +9,7 @@ public class InventoryView : MonoBehaviour
     public string OwnerId
     {
         get => _textOwner.text;
-        set => _textOwner.text = value; 
+        set => _textOwner.SetText(value);
     }
 
     public InventorySlotView GetInventorySlotView(int index)

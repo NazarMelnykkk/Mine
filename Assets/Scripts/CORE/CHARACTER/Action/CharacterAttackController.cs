@@ -7,7 +7,7 @@ public class CharacterAttackController
     private Character _character;
 
     [Header("Components")]
-    private CharacterAnimationController _characterAnimationController;
+    private AnimationController _characterAnimationController;
     private TriggerCollider _triggerCollider;
     private bool _isAttacking = false;
 
@@ -21,7 +21,7 @@ public class CharacterAttackController
     {
         _config = _character.AttackConfig; //???
         _triggerCollider = _character.TriggerCollider;
-        _characterAnimationController = _character.CharacterAnimationController;
+        _characterAnimationController = _character.AnimationController;
     }
 
     public async Task Attack()

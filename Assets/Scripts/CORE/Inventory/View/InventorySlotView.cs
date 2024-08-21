@@ -10,12 +10,12 @@ public class InventorySlotView : MonoBehaviour
     public string Title
     {
         get => _textTitle.text;
-        set => _textTitle.text = value;
+        set => _textTitle.SetText(value);
     }
 
     public int Amount
     {
         get => Convert.ToInt32(_textAmount.text);
-        set => _textAmount.text =  value == 0 ? "" : value.ToString();
+        set => _textAmount.SetText(value == 0 ? "" : value.ToString());
     }
 }

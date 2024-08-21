@@ -15,7 +15,7 @@ public class AlertLetter : AlertBase
 
     protected void OnDisable()
     {
-        _alertText.text = "";
+        _alertText.SetText("");
         _fadeInCoroutine = null;
         _alertText.color = new Color(_alertText.color.r, _alertText.color.g, _alertText.color.b, 0f);
         _backGround.color = new Color(_backGround.color.r, _backGround.color.g, _backGround.color.b, 0f);
@@ -24,7 +24,7 @@ public class AlertLetter : AlertBase
 
     public void Setup(string text, string color, float delay)
     {
-        _alertText.text = $"<color={color}>{text}</color>";
+        _alertText.SetText($"<color={color}>{text}</color>");
 
         if (_fadeInCoroutine != null)
         {

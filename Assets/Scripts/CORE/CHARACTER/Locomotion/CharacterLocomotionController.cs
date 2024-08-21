@@ -11,7 +11,7 @@ public class CharacterLocomotionController : ICommandHandler
 
     private LocomotionConfig _config;
     private TriggerCollider _triggerCollider;
-    private CharacterAnimationController _characterAnimationController;
+    private AnimationController _characterAnimationController;
     private Transform _transform;
     private Rigidbody2D _rb;
 
@@ -27,7 +27,7 @@ public class CharacterLocomotionController : ICommandHandler
         _triggerCollider = _character.TriggerCollider;
         _transform = _character.transform;
         _rb = _character.Rigidbody2D;
-        _characterAnimationController = _character.CharacterAnimationController;
+        _characterAnimationController = _character.AnimationController;
     }
 
     public void ProcessCommand(CharacterCommand command)

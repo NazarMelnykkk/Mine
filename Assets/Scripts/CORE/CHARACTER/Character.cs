@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : CoreUnits
 {
-    [Header("Components")]
-    public Rigidbody2D Rigidbody2D;
-    public TriggerCollider TriggerCollider;
-    public CharacterAnimationController CharacterAnimationController;
+
+
 
     [Header("Commmand")]
     public CharacterCommandHandler CharacterCommandHandler;

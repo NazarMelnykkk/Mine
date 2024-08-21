@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterCommandHandler : MonoBehaviour
+public class CharacterCommandHandler : CommandHandlerBase
 {
     public CharacterCommand CurrentCommand;
     [SerializeField] private Character _character;

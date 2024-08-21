@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class HealthBase : MonoBehaviour , IDamageable
 {
+    [SerializeField] protected CoreUnits _core;
     [SerializeField] protected HealthConfig _healthConfig;
     [SerializeField] protected int _health;
     [SerializeField] protected BarBase _bar;
-    [SerializeField] protected float _knockbackForceMultiplier = 1000f;
     protected Rigidbody2D _rigidbody2D;
 
 
@@ -28,7 +28,8 @@ public class HealthBase : MonoBehaviour , IDamageable
         if (damageValue > 0)
         {
             _health -= damageValue;
-            Knockbac(damageValue, damageDealer);
+            _core.EffectController.KnockBack(damageValue , damageDealer);
+            _core.EffectController.Flash();
             if (_health <= 0)
             {
                 _health = 0;
@@ -38,13 +39,6 @@ public class HealthBase : MonoBehaviour , IDamageable
             HealthUpdated();
             _bar.UpdateBar(_healthConfig.MaxHealth, _health);
         }
-    }
-
-    public virtual void Knockbac(int damageValue, Transform damageDealer)
-    {
-        Vector2 knockbackDirection = (transform.position - damageDealer.position).normalized;
-        float knockbackForce = damageValue * _knockbackForceMultiplier;
-        _rigidbody2D.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
     }
 
     public virtual void HealthUpdated()

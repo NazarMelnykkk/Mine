@@ -56,6 +56,6 @@ public class CollectableItem : InteractableObject
 
     private void PlaySound()
     {
-        References.Instance.AudioHandler.PlaySound(SoundKeys.COLLECTITEM_TYPE, SoundKeys.COLLECTITEM);
+        References.Instance.AudioHandler.PlaySound(SoundConstants.COLLECTITEM_TYPE, SoundConstants.COLLECTITEM);
     }
 }

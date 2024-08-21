@@ -1,8 +1,4 @@
-using UnityEngine;
-
-public class Enemy : MonoBehaviour
+public class Enemy : CoreUnits
 {
-
-    public Rigidbody2D Rigidbody2D;
 
 }

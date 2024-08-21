@@ -12,6 +12,7 @@ public class References : MonoBehaviour
     public CameraFollow CameraFollow;
     public CameraSnaking CameraSnaking;
     public PauseHandler PauseHandler;
+    public WorldTime WorldTime;
 
     [Header("Links UI")]
     public AlertsHandler AlertsHandler;

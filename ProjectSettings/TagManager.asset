@@ -16,10 +16,10 @@ TagManager:
   - 
   - 
   - 
-  - Interact/Interactable
-  - Character/Player
-  - Character/NPC
-  - Character/Enemy
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -40,7 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI
-    uniqueID: 1625861253
     locked: 0

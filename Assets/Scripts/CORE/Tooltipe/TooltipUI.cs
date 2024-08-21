@@ -62,7 +62,7 @@ public class TooltipUI : TooltipBase, IPointerEnterHandler, IPointerExitHandler
 
     protected override IEnumerator ShowDelay()
     {
-        yield return new WaitForSeconds(KeysDelay.DELAY_05);
+        yield return new WaitForSeconds(DelayConstants.DELAY_05);
 
         while (true)
         {

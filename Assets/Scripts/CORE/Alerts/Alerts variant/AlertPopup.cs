@@ -7,7 +7,7 @@ public class AlertPopup : AlertBase
 
     protected void OnDisable()
     {
-        _alertText.text = "";
+        _alertText.SetText("");
         _lifeCoroutine = null;
         _alertText.color = new Color(_alertText.color.r, _alertText.color.g, _alertText.color.b, 0f);
         _backGround.color = new Color(_backGround.color.r, _backGround.color.g, _backGround.color.b, 0f);
@@ -16,7 +16,7 @@ public class AlertPopup : AlertBase
 
     public void Setup(string text, string color, float lifeTime, float delay)
     {
-        _alertText.text = $"<color={color}>{text}</color>";
+        _alertText.SetText($"<color={color}>{text}</color>");
 
         if (_lifeCoroutine != null)
         {
@@ -84,7 +84,7 @@ public class AlertPopup : AlertBase
         _backGround.color = new Color(bgColor.r, bgColor.g, bgColor.b, 0f);
         _border.color = new Color(borderColor.r, borderColor.g, borderColor.b, 0f);
 
-        yield return new WaitForSeconds(KeysDelay.DELAY_05);
+        yield return new WaitForSeconds(DelayConstants.DELAY_05);
     }
 
 

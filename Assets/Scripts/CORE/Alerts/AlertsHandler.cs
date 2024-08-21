@@ -48,7 +48,7 @@ public class AlertsHandler : MonoBehaviour
         }      
     }*/
 
-    public void AlertLetter(string text, string color = KeysColor.DEFAULT, float delay = 1)
+    public void AlertLetter(string text, string color = ColorConstants.DEFAULT, float delay = 1)
     {
         if (_letterIndex >= _alertsLetters.Count) 
         {
@@ -70,7 +70,7 @@ public class AlertsHandler : MonoBehaviour
         _letterIndex++;
     }
 
-    public void AlertPopup(string text, string color = KeysColor.DEFAULT, float lifeTime = 1, float delay = 1)
+    public void AlertPopup(string text, string color = ColorConstants.DEFAULT, float lifeTime = 1, float delay = 1)
     {
         if (_popupIndex >= _alertsPopup.Count)
         {

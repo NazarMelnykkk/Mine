@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class EnemyCommandHandler : MonoBehaviour
+public class EnemyCommandHandler : CommandHandlerBase
 {
     public EnemyCommand CurrentCommand;
     [SerializeField] private Enemy _enemy;
-    private CharacterInputController _inputController;
 
     private EnemyFollowController _enemyFollowController;
      
