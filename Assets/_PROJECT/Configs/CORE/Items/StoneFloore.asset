@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bc86c0cca094b459d53632ed9916d7, type: 3}
+  m_Name: StoneFloore
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Stone Floore
+  <Icon>k__BackingField: {fileID: -1159758436, guid: d0b5dd9613df2ba4ea74e8b1717a7fcc, type: 3}
+  <ActionType>k__BackingField: 7
+  <Tile>k__BackingField: {fileID: 11400000, guid: 76d0b84f015efc043871bce9f5162eb4, type: 2}

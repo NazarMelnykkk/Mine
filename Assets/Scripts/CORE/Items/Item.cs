@@ -3,9 +3,8 @@ using UnityEngine;
 
 public abstract class Item : ScriptableObject
 {
-    public string ItemName;
-    public Sprite Icon;
-    public ItemActionType ActionType;
+    [field: SerializeField] public string Name { get; private set; }
+    [field: SerializeField] public Sprite Icon { get; private set; }
+    [field: SerializeField] public ItemActionType ActionType { get; private set; }
 
-    //public abstract void Use();
 }

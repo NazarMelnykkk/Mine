@@ -10,6 +10,13 @@ public class InventoryController : MonoBehaviour , IDataPersistence
     private InventoryDataProvider _inventoryDataProvider;
     private readonly string[] _itemIds = { "APPLE", "BANANA", "SEEED", "ARMOR", };
 
+
+
+
+
+
+
+
     public void SaveData(GameData data)
     {
         Debug.Log("SAVE");
@@ -29,7 +36,10 @@ public class InventoryController : MonoBehaviour , IDataPersistence
         _screenController.OpenInventory(OwnerName);
     }
 
+    
 
+
+    //testing
     private void Update()
     {
         

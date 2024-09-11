@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class InventorySlotView : MonoBehaviour
+public class InventorySlotView : MonoBehaviour 
 {
     [SerializeField] private TextMeshProUGUI _textTitle;
     [SerializeField] private TextMeshProUGUI _textAmount;
@@ -18,4 +18,6 @@ public class InventorySlotView : MonoBehaviour
         get => Convert.ToInt32(_textAmount.text);
         set => _textAmount.SetText(value == 0 ? "" : value.ToString());
     }
+
+
 }
