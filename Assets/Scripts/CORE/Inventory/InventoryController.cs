@@ -40,7 +40,7 @@ public class InventoryController : MonoBehaviour , IDataPersistence
 
 
     //testing
-    private void Update()
+   /* private void Update()
     {
         
 
@@ -65,5 +65,5 @@ public class InventoryController : MonoBehaviour , IDataPersistence
             Debug.Log(result.ItemsToRemoveAmount);
 
         }
-    }
+    }*/
 }

@@ -28,7 +28,6 @@ public class CharacterActiveSlotController : MonoBehaviour
 
             Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0);
             _tileHandler.IsInteractable(position);
-
         }
     }
 

@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Damageble
+  - NPC
+  - Interaction
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 1509848409
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Hovering
+    uniqueID: 714613935
     locked: 0

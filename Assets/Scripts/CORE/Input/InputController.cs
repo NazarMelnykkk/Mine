@@ -20,6 +20,11 @@ public class InputController : MonoBehaviour
         InputActions.Character.Fire1.performed += Fire1Performed;
         InputActions.Character.Fire1.canceled += Fire1Canceled;
 
+        InputActions.Character.Fire2.performed += Fire2Performed;
+        InputActions.Character.Fire2.canceled += Fire2Canceled;
+
+
+
         InputActions.Character.Scroll.performed += OnScrollPerformed;
 
         InputActions.Character.Interaction.performed += InteractionPerformed;
@@ -38,6 +43,9 @@ public class InputController : MonoBehaviour
         InputActions.Character.Fire1.performed -= Fire1Performed;
         InputActions.Character.Fire1.canceled -= Fire1Canceled;
 
+        InputActions.Character.Fire2.performed -= Fire2Performed;
+        InputActions.Character.Fire2.canceled -= Fire2Canceled;
+
         InputActions.Character.Scroll.performed -= OnScrollPerformed;
 
         InputActions.Character.Interaction.performed -= InteractionPerformed;
@@ -46,6 +54,9 @@ public class InputController : MonoBehaviour
 
         InputActions.Character.Action.performed -= ActionPerformed;
     }
+
+    public Vector2 MousePosition() => Input.mousePosition;
+    public Vector2 MouseInWorldPosition => Camera.main.ScreenToWorldPoint(MousePosition());
 
     #region Move
 
@@ -65,7 +76,7 @@ public class InputController : MonoBehaviour
 
     #endregion
 
-    #region Attack
+    #region Fire1
     public Action OnFire1PerformedEvent;
 
     private void Fire1Performed(InputAction.CallbackContext context)
@@ -78,6 +89,22 @@ public class InputController : MonoBehaviour
     private void Fire1Canceled(InputAction.CallbackContext context)
     {
         OnFire1CanceledEvent?.Invoke();
+    }
+    #endregion
+
+    #region Fire2
+    public Action OnFire2PerformedEvent;
+
+    private void Fire2Performed(InputAction.CallbackContext context)
+    {
+        OnFire2PerformedEvent?.Invoke();
+    }
+
+    public Action OnFire2CanceledEvent;
+
+    private void Fire2Canceled(InputAction.CallbackContext context)
+    {
+        OnFire2CanceledEvent?.Invoke();
     }
     #endregion
 

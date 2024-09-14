@@ -340,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &260776480
 Light:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260776479}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835471406}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -1733,14 +1733,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2219a5644dd448f49b9f06010e1c8185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataPersistenceHandlerBase: {fileID: 905193556}
-  AudioHandler: {fileID: 1240553609}
-  InputController: {fileID: 543452609}
-  SceneLoader: {fileID: 8225734}
-  CameraFollow: {fileID: 1800152676}
-  CameraSnaking: {fileID: 1800152675}
-  PauseHandler: {fileID: 1959259322}
-  WorldTime: {fileID: 1095136911}
+  <DataPersistenceHandlerBase>k__BackingField: {fileID: 905193556}
+  <AudioHandler>k__BackingField: {fileID: 1240553609}
+  <InputController>k__BackingField: {fileID: 543452609}
+  <SceneLoader>k__BackingField: {fileID: 8225734}
+  <CameraFollow>k__BackingField: {fileID: 1800152676}
+  <CameraSnaking>k__BackingField: {fileID: 1800152675}
+  <PauseHandler>k__BackingField: {fileID: 1959259322}
+  <WorldTime>k__BackingField: {fileID: 1095136911}
   AlertsHandler: {fileID: 0}
   TooltipHandler: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

@@ -11,7 +11,7 @@ public class CharacterAttackController
     private TriggerCollider _triggerCollider;
     private bool _isAttacking = false;
 
-    public void Setup(Character character )
+    public void Setup(Character character)
     {
         _character = character;
         Init();

@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class Character : CoreUnits
 {
-
-
-
     [Header("Commmand")]
     public CharacterCommandHandler CharacterCommandHandler;
 
@@ -30,7 +27,7 @@ public class Character : CoreUnits
 
     public void PickUpItem(CollectableItem item)
     {
-       // inventory.Add(item);
+        //.Add(item);
     }
 
     public Item GetCurrentItem()

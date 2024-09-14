@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42bc86c0cca094b459d53632ed9916d7, type: 3}
-  m_Name: StoneFloore
+  m_Name: Wood Path
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Stone Floore
-  <Icon>k__BackingField: {fileID: -1159758436, guid: d0b5dd9613df2ba4ea74e8b1717a7fcc, type: 3}
+  <Icon>k__BackingField: {fileID: 1990946873, guid: 2a1e70306538207439d8bfc44566f8bd, type: 3}
   <ActionType>k__BackingField: 7
-  <Tile>k__BackingField: {fileID: 11400000, guid: 76d0b84f015efc043871bce9f5162eb4, type: 2}
+  <Tile>k__BackingField: {fileID: 11400000, guid: a9be7a7e7a1e7974fb1e7ef1e0a6334a, type: 2}
+  <TileOffset>k__BackingField: {x: 0, y: 0.5, z: 0}
